@@ -39,7 +39,6 @@ dependencies:
   flutter_screenutil: ^5.9.3
   google_fonts: ^6.3.3
   intl: ^0.20.2
-  json_rpc_2: ^4.0.0
   path: ^1.9.1
   percent_indicator: ^4.2.5
   shared_preferences: ^2.5.3
