@@ -12,41 +12,42 @@ class HabitStorage {
   }
 
   static Future<void> saveHabits(List<HabitModel> habits) async {
-    final String jsonString =
-        jsonEncode(habits.map((habit) => habit.toMap()).toList());
+    final String jsonString = jsonEncode(
+      habits.map((habit) => habit.toMap()).toList(),
+    );
     await _prefs.setString(key, jsonString);
   }
 
-  static Future<List<HabitModel>> getHabits() {
-    final jsonString = _prefs.getString(key);
-    if (jsonString != null) {
+  static Future<List<HabitModel>> getHabits() async {
+    try {
+      final jsonString = _prefs.getString(key);
+      if (jsonString == null) return [];
+
       final List decoded = jsonDecode(jsonString);
-      return Future.value(decoded.map((e) => HabitModel.fromMap(e)).toList());
+      return decoded.map((e) => HabitModel.fromMap(e)).toList();
+    } catch (e) {
+      return [];
     }
-    return Future.value([]);
   }
 
-Future<void> deleteHabit(String id) async {
-  final habits = await getHabits();
-  final updated = habits.where((h) => h.id != id).toList();
-  await saveHabits(updated);
-}
+  static Future<void> deleteHabit(String id) async {
+    final habits = await getHabits();
+    final updated = habits.where((h) => h.id != id).toList();
+    await saveHabits(updated);
+  }
 
-Future<void> updateHabit(HabitModel habit) async {
-  final habits = await getHabits();
+  static Future<void> updateHabit(HabitModel habit) async {
+    final habits = await getHabits();
 
-  final updated = habits.map((h) {
-    if (h.id == habit.id) return habit;
-    return h;
-  }).toList();
+    final updated = habits.map((h) {
+      if (h.id == habit.id) return habit;
+      return h;
+    }).toList();
 
-  await saveHabits(updated);
-}
+    await saveHabits(updated);
+  }
 
   static Future<void> clearAllData() async {
     await _prefs.clear();
   }
-
-  
-
 }
