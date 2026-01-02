@@ -1,172 +1,130 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:habit_tracker/core/styles/colors.dart';
 
-class HabitDetailsScreen extends StatefulWidget {
+class HabitDetailsScreen extends StatelessWidget {
   final String habitName;
-  final int target;
-  final int completed;
-  final IconData icon;
 
-  const HabitDetailsScreen({
-    super.key,
-    required this.habitName,
-    required this.target,
-    required this.completed,
-    required this.icon,
-  });
-
-  @override
-  State<HabitDetailsScreen> createState() => _HabitDetailsScreenState();
-}
-
-class _HabitDetailsScreenState extends State<HabitDetailsScreen> {
-  late int completedCount;
-
-  @override
-  void initState() {
-    super.initState();
-    completedCount = widget.completed;
-  }
+  const HabitDetailsScreen({super.key, required this.habitName});
 
   @override
   Widget build(BuildContext context) {
-    final progress = completedCount / widget.target;
+    final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          widget.habitName,
-          style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        foregroundColor: Colors.black,
-        actions: [
-          IconButton(icon: const Icon(Icons.delete_outline), onPressed: () {}),
-        ],
-      ),
+      appBar: AppBar(title: Text(habitName), centerTitle: true),
 
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            _headerCard(),
-            const SizedBox(height: 24),
-            _progressCard(progress),
-            const Spacer(),
-            _actionButton(),
-          ],
-        ),
-      ),
-    );
-  }
+            // ===== Progress Circle =====
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.surface,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                children: [
+                  Text("Progress", style: theme.textTheme.titleMedium),
+                  const SizedBox(height: 12),
 
-  Widget _headerCard() {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: const Color(0xFF8B7CF6),
-        borderRadius: BorderRadius.circular(24),
-      ),
-      child: Column(
-        children: [
-          CircleAvatar(
-            radius: 36,
-            backgroundColor: Colors.white,
-            child: Icon(widget.icon, size: 36, color: const Color(0xFF8B7CF6)),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            widget.habitName,
-            style: GoogleFonts.poppins(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          const SizedBox(height: 6),
-          Text(
-            "Target: ${widget.target}",
-            style: GoogleFonts.poppins(color: Colors.white70),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _progressCard(double progress) {
-    return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
-      ),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 120.h,
-            width: 120.w,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                SizedBox(
-                  width: 100.w,
-                  height: 100.h,
-                  child: CircularProgressIndicator(
-                    value: progress,
-                    strokeWidth: 10,
-                    backgroundColor: Colors.grey.shade200,
-                    valueColor: const AlwaysStoppedAnimation(
-                      ColorsManager.primaryColor,
+                  SizedBox(
+                    height: 140,
+                    width: 140,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        CircularProgressIndicator(value: 0.65, strokeWidth: 10),
+                        Text("65%", style: theme.textTheme.headlineMedium),
+                      ],
                     ),
                   ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 16),
+
+            // ===== STREAK CARD =====
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.primaryContainer,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Current Streak", style: theme.textTheme.titleMedium),
+                  Row(
+                    children: [
+                      Icon(Icons.local_fire_department),
+                      const SizedBox(width: 4),
+                      Text("7 days", style: theme.textTheme.titleLarge),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 16),
+
+            // ===== Week Row =====
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text("This week", style: theme.textTheme.titleMedium),
+            ),
+
+            const SizedBox(height: 12),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: List.generate(7, (index) {
+                final days = ["M", "T", "W", "T", "F", "S", "S"];
+                final done = index < 4;
+
+                return Column(
+                  children: [
+                    CircleAvatar(
+                      radius: 18,
+                      backgroundColor: done
+                          ? theme.colorScheme.primary
+                          : Colors.grey[400],
+                      child: Icon(
+                        done ? Icons.check : Icons.close,
+                        size: 18,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(days[index]),
+                  ],
+                );
+              }),
+            ),
+
+            const Spacer(),
+
+            // ===== ACTION BUTTONS =====
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: const Text("✔ تم إنجازه اليوم"),
+                  ),
                 ),
-                Text(
-                  "$completedCount / ${widget.target}",
-                  style: GoogleFonts.poppins(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
+                const SizedBox(width: 12),
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: () {},
+                    child: const Text("✖ لم يتم إنجازه"),
                   ),
                 ),
               ],
             ),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            "Completed Progress",
-            style: GoogleFonts.poppins(fontSize: 14, color: Colors.grey),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _actionButton() {
-    return SizedBox(
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: () {
-          if (completedCount < widget.target) {
-            setState(() => completedCount++);
-          }
-        },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xFF8B7CF6),
-          padding: const EdgeInsets.symmetric(vertical: 14),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-        ),
-        child: Text(
-          "Mark as Done",
-          style: GoogleFonts.poppins(
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-            color: Colors.white,
-          ),
+          ],
         ),
       ),
     );
