@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:habit_tracker/core/styles/colors.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -36,12 +38,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 Expanded(
                   child: Text(
                     "Dark Mode",
-                    style: GoogleFonts.poppins(fontSize: 15),
+                    style: GoogleFonts.poppins(fontSize: 15.sp),
                   ),
                 ),
                 Switch(
                   value: isDark,
-                  activeColor: const Color(0xFF8B7CF6),
+                  activeColor: ColorsManager.primaryColor,
                   onChanged: (v) {
                     setState(() => isDark = v);
 
@@ -63,7 +65,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 Expanded(
                   child: Text(
                     "App Language",
-                    style: GoogleFonts.poppins(fontSize: 15),
+                    style: GoogleFonts.poppins(fontSize: 16.sp),
                   ),
                 ),
                 DropdownButton<String>(
@@ -99,7 +101,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   "Habit Tracker App",
                   style: GoogleFonts.poppins(
                     fontWeight: FontWeight.w600,
-                    fontSize: 15,
+                    fontSize: 16.sp,
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -107,14 +109,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   "Version 1.0.0",
                   style: GoogleFonts.poppins(
                     color: Colors.grey,
-                    fontSize: 13,
+                    fontSize: 14.sp,
                   ),
                 ),
                 const SizedBox(height: 6),
                 Text(
                   "Built with Flutter 💙",
                   style: GoogleFonts.poppins(
-                    fontSize: 13,
+                    fontSize: 14.sp,
                   ),
                 ),
               ],

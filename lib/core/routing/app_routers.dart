@@ -14,12 +14,7 @@ class AppRouters {
         return MaterialPageRoute(builder: (_) => AddHabitScreen());
       case Routes.habitDetailsScreen:
         return MaterialPageRoute(
-          builder: (_) => HabitDetailsScreen(
-            habitName: '',
-            target: 10,
-            icon: Icons.add_ic_call,
-            completed: 5,
-          ),
+          builder: (_) => HabitDetailsScreen(habitName: ''),
         );
       case Routes.settingsScreen:
         return MaterialPageRoute(builder: (_) => SettingsScreen());
