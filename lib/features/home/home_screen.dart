@@ -101,7 +101,8 @@ class HomeScreen extends StatelessWidget {
           progress: "2 / 8",
           value: 0.25,
           onTap: () {
-            Navigator.pushNamed(context, Routes.habitDetailsScreen);
+            Navigator.pushNamed(context, Routes.habitDetailsScreen,
+                arguments: null);
           },
         );
       },

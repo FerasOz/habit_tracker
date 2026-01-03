@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/core/models/habit_model.dart';
 
 class HabitDetailsScreen extends StatelessWidget {
-  final String habitName;
+  final HabitModel habit;
 
-  const HabitDetailsScreen({super.key, required this.habitName});
+  const HabitDetailsScreen({super.key, required this.habit});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(title: Text(habitName), centerTitle: true),
+      appBar: AppBar(title: Text(habit.title), centerTitle: true),
 
       body: Padding(
         padding: const EdgeInsets.all(16),
