@@ -7,6 +7,8 @@ import 'package:habit_tracker/core/routing/routes.dart';
 import 'package:habit_tracker/core/styles/colors.dart';
 import 'package:habit_tracker/features/cubit/habit_cubit.dart';
 import 'package:habit_tracker/features/cubit/habit_state.dart';
+import 'package:habit_tracker/features/home/widgets/habits_list_widget.dart';
+import 'package:habit_tracker/features/home/widgets/summary_card_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -74,78 +76,19 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
-                  _buildSummaryCard(doneToday, total, progress),
+                  SummaryCardWidget(
+                    done: doneToday,
+                    total: total,
+                    progress: progress,
+                  ),
                   const SizedBox(height: 20),
-                  Expanded(child: _buildHabitsList(state)),
+                  Expanded(child: HabitsListWidget(state: state)),
                 ],
               ),
             ),
           );
         },
       ),
-    );
-  }
-
-  Widget _buildSummaryCard(int done, int total, double progress) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: ColorsManager.primaryColor,
-        borderRadius: BorderRadius.circular(20.r),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Today Progress",
-            style: GoogleFonts.poppins(color: Colors.white70, fontSize: 14.sp),
-          ),
-          const SizedBox(height: 10),
-          Text(
-            "$done / $total Habits Completed",
-            style: GoogleFonts.poppins(
-              color: Colors.white,
-              fontSize: 22.sp,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          SizedBox(height: 10),
-          LinearProgressIndicator(
-            value: progress,
-            backgroundColor: Colors.white30,
-            valueColor: AlwaysStoppedAnimation(Colors.white),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildHabitsList(HabitState state) {
-    return ListView.separated(
-      itemCount: state.habits.length,
-      separatorBuilder: (_, __) => SizedBox(height: 12.h),
-      itemBuilder: (context, index) {
-        final habit = state.habits[index];
-
-        return ListTile(
-          onTap: () {
-            Navigator.pushNamed(
-              context,
-              Routes.habitDetailsScreen,
-              arguments: habit,
-            );
-          },
-          leading: Icon(
-            habit.doneToday ? Icons.check_circle : Icons.circle_outlined,
-            color: habit.doneToday ? Colors.green : Colors.grey,
-          ),
-          title: Text(habit.title),
-          subtitle: habit.description == null || habit.description!.isEmpty
-              ? null
-              : Text(habit.description!),
-        );
-      },
     );
   }
 }
