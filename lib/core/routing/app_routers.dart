@@ -19,7 +19,12 @@ class AppRouters {
           ),
         );
       case Routes.addHabitScreen:
-        return MaterialPageRoute(builder: (_) => AddHabitScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => HabitCubit(),
+            child: AddHabitScreen(),
+          ),
+        );
       case Routes.habitDetailsScreen:
         final habit = settings.arguments as HabitModel;
         return MaterialPageRoute(
