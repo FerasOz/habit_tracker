@@ -18,7 +18,6 @@ class AddHabitScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            //----- CARD -----
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
