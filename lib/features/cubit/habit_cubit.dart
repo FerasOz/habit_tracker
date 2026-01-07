@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habit_tracker/core/helpers/constants.dart';
 import 'package:habit_tracker/core/helpers/habit_storage.dart';
@@ -6,6 +7,11 @@ import 'package:habit_tracker/features/cubit/habit_state.dart';
 
 class HabitCubit extends Cubit<HabitState> {
   HabitCubit() : super(HabitState());
+
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+  final ValueNotifier<Set<int>> activeDays = ValueNotifier({1, 2, 3, 4, 5});
+  final ValueNotifier<int> targetPerWeek = ValueNotifier(3);
 
   //fetch habits
   Future<void> fetchHabits() async {
