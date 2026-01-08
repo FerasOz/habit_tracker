@@ -4,11 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/core/styles/colors.dart';
 
 class SummaryCardWidget extends StatelessWidget {
-  int done;
-  int total;
-  double progress;
+  final int done;
+  final int total;
+  final double progress;
 
-  SummaryCardWidget({
+  const SummaryCardWidget({
     super.key,
     required this.done,
     required this.total,
@@ -17,34 +17,78 @@ class SummaryCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final percentage = (progress * 100).toInt();
+
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20.r),
       decoration: BoxDecoration(
-        color: ColorsManager.primaryColor,
+        gradient: LinearGradient(
+          colors: [
+            ColorsManager.primaryColor,
+            ColorsManager.primaryColor.withOpacity(0.85),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         borderRadius: BorderRadius.circular(20.r),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Today Progress",
-            style: GoogleFonts.poppins(color: Colors.white70, fontSize: 14.sp),
+          // Header
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Today's Progress",
+                style: GoogleFonts.poppins(
+                  color: Colors.white70,
+                  fontSize: 14.sp,
+                ),
+              ),
+              Icon(
+                Icons.trending_up,
+                color: Colors.white70,
+                size: 22.sp,
+              ),
+            ],
           ),
-          const SizedBox(height: 10),
+
+          SizedBox(height: 12.h),
+
+          // Main text
           Text(
-            "$done / $total Habits Completed",
+            "$done / $total habits completed",
             style: GoogleFonts.poppins(
               color: Colors.white,
-              fontSize: 22.sp,
+              fontSize: 20.sp,
               fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(height: 10),
-          LinearProgressIndicator(
-            value: progress,
-            backgroundColor: Colors.white30,
-            valueColor: AlwaysStoppedAnimation(Colors.white),
+
+          SizedBox(height: 6.h),
+
+          // Percentage
+          Text(
+            "$percentage%",
+            style: GoogleFonts.poppins(
+              color: Colors.white70,
+              fontSize: 14.sp,
+            ),
+          ),
+
+          SizedBox(height: 14.h),
+
+          // Progress bar
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10.r),
+            child: LinearProgressIndicator(
+              value: progress.clamp(0.0, 1.0),
+              minHeight: 8.h,
+              backgroundColor: Colors.white24,
+              valueColor: const AlwaysStoppedAnimation(Colors.white),
+            ),
           ),
         ],
       ),
