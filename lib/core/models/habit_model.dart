@@ -21,6 +21,30 @@ class HabitModel {
     required this.activeDays,
   });
 
+  HabitModel copyWith({
+    String? id,
+    String? title,
+    String? description,
+    DateTime? createdAt,
+    int? targetPerWeek,
+    int? completedDays,
+    int? currentStreak,
+    bool? doneToday,
+    List<int>? activeDays,
+  }) {
+    return HabitModel(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      createdAt: createdAt ?? this.createdAt,
+      targetPerWeek: targetPerWeek ?? this.targetPerWeek,
+      completedDays: completedDays ?? this.completedDays,
+      currentStreak: currentStreak ?? this.currentStreak,
+      doneToday: doneToday ?? this.doneToday,
+      activeDays: activeDays ?? this.activeDays,
+    );
+  }
+
   factory HabitModel.fromMap(Map<String, dynamic> map) {
     return HabitModel(
       id: map['id'],
