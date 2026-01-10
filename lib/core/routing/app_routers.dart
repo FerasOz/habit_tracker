@@ -28,7 +28,10 @@ class AppRouters {
       case Routes.habitDetailsScreen:
         final habit = settings.arguments as HabitModel;
         return MaterialPageRoute(
-          builder: (_) => HabitDetailsScreen(habit: habit),
+          builder: (_) => BlocProvider(
+            create: (context) => HabitCubit(),
+            child: HabitDetailsScreen(habit: habit),
+          ),
         );
       case Routes.settingsScreen:
         return MaterialPageRoute(builder: (_) => SettingsScreen());
