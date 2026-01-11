@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/core/styles/colors.dart';
 import 'package:habit_tracker/features/cubit/habit_state.dart';
 import 'package:habit_tracker/features/home/widgets/habit_card_widget.dart';
@@ -15,7 +15,7 @@ class HabitsListWidget extends StatelessWidget {
     if (state.habits.isEmpty) {
       return Center(
         child: Text(
-          "No habits yet 🌱",
+          "No habits yet",
           style: GoogleFonts.poppins(color: Colors.grey),
         ),
       );
@@ -23,7 +23,7 @@ class HabitsListWidget extends StatelessWidget {
 
     return ListView.separated(
       itemCount: state.habits.length,
-      separatorBuilder: (_, __) => SizedBox(height: 12.h),
+      separatorBuilder: (_, __) => verticalSpace(12),
       itemBuilder: (context, index) {
         final habit = state.habits[index];
 

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/core/helpers/constants.dart';
+import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/core/routing/routes.dart';
 import 'package:habit_tracker/core/styles/colors.dart';
 import 'package:habit_tracker/features/cubit/habit_cubit.dart';
@@ -81,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                     total: total,
                     progress: progress,
                   ),
-                  const SizedBox(height: 20),
+                  verticalSpace(20),
                   Expanded(child: HabitsListWidget(state: state)),
                 ],
               ),

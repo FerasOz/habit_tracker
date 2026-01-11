@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/core/styles/colors.dart';
 
 class SummaryCardWidget extends StatelessWidget {
@@ -36,7 +37,6 @@ class SummaryCardWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -54,10 +54,7 @@ class SummaryCardWidget extends StatelessWidget {
               ),
             ],
           ),
-
-          SizedBox(height: 12.h),
-
-          // Main text
+          verticalSpace(12),
           Text(
             "$done / $total habits completed",
             style: GoogleFonts.poppins(
@@ -66,10 +63,7 @@ class SummaryCardWidget extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-
-          SizedBox(height: 6.h),
-
-          // Percentage
+          verticalSpace(6.h),
           Text(
             "$percentage%",
             style: GoogleFonts.poppins(
@@ -77,10 +71,7 @@ class SummaryCardWidget extends StatelessWidget {
               fontSize: 14.sp,
             ),
           ),
-
-          SizedBox(height: 14.h),
-
-          // Progress bar
+          verticalSpace(14.h),
           ClipRRect(
             borderRadius: BorderRadius.circular(10.r),
             child: LinearProgressIndicator(

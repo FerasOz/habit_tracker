@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/core/models/habit_model.dart';
 import 'package:habit_tracker/core/routing/routes.dart';
 import 'package:habit_tracker/core/styles/colors.dart';
@@ -47,9 +48,8 @@ class HabitItemWidget extends StatelessWidget {
           children: [
             Row(
               children: [
-                // Icon
                 CircleAvatar(
-                  radius: 22,
+                  radius: 22.r,
                   backgroundColor: streakColor.withOpacity(0.15),
                   child: Icon(
                     habit.doneToday
@@ -58,7 +58,7 @@ class HabitItemWidget extends StatelessWidget {
                     color: streakColor,
                   ),
                 ),
-                SizedBox(width: 14.w),
+                horizontalSpace(14),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +70,7 @@ class HabitItemWidget extends StatelessWidget {
                           fontSize: 15.sp,
                         ),
                       ),
-                      SizedBox(height: 4.h),
+                      verticalSpace(4),
                       Text(
                         "🔥 ${habit.currentStreak} day streak",
                         style: GoogleFonts.poppins(
@@ -84,13 +84,13 @@ class HabitItemWidget extends StatelessWidget {
 
                 if (achieved)
                   Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 4,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 10.w,
+                      vertical: 4.h,
                     ),
                     decoration: BoxDecoration(
                       color: Colors.orange,
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.r),
                     ),
                     child: Text(
                       "Goal 🎯",
@@ -99,7 +99,7 @@ class HabitItemWidget extends StatelessWidget {
                   ),
               ],
             ),
-            SizedBox(height: 12.h),
+            verticalSpace(12),
             ClipRRect(
               borderRadius: BorderRadius.circular(10.r),
               child: LinearProgressIndicator(
@@ -109,7 +109,7 @@ class HabitItemWidget extends StatelessWidget {
                 valueColor: AlwaysStoppedAnimation(ColorsManager.primaryColor),
               ),
             ),
-            SizedBox(height: 10.h),
+            verticalSpace(10),
             ActiveDaysRow(activeDays: habit.activeDays),
           ],
         ),
