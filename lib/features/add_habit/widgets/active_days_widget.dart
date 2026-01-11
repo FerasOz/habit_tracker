@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habit_tracker/core/helpers/spacing.dart';
 
 class ActiveDaysWidget extends StatelessWidget {
   ValueNotifier<Set<int>> activeDays;
@@ -14,9 +15,7 @@ class ActiveDaysWidget extends StatelessWidget {
           "Active days",
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
-
-        const SizedBox(height: 8),
-
+        verticalSpace(8),
         ValueListenableBuilder(
           valueListenable: activeDays,
           builder: (context, value, _) {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/features/add_habit/widgets/active_days_widget.dart';
 import 'package:habit_tracker/features/add_habit/widgets/add_habit_text_field_widget.dart';
 import 'package:habit_tracker/features/add_habit/widgets/save_habit_btn.dart';
@@ -22,7 +24,7 @@ class AddHabitScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(18),
+                borderRadius: BorderRadius.circular(18.r),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,22 +34,17 @@ class AddHabitScreen extends StatelessWidget {
                     label: "Habit title",
                     hintText: "Drink water",
                   ),
-
-                  const SizedBox(height: 16),
-
+                  verticalSpace(16),
                   AddHabitTextFieldWidget(
                     controller: cubit.descriptionController,
                     label: "Description (optional)",
                     hintText: "Short note",
                   ),
-
-                  const SizedBox(height: 16),
-
+                  verticalSpace(16),
                   const Text(
                     "Target per week",
                     style: TextStyle(fontWeight: FontWeight.w600),
                   ),
-
                   ValueListenableBuilder(
                     valueListenable: cubit.targetPerWeek,
                     builder: (context, value, _) {
@@ -68,16 +65,12 @@ class AddHabitScreen extends StatelessWidget {
                       );
                     },
                   ),
-
-                  const SizedBox(height: 16),
-
+                  verticalSpace(16),
                   ActiveDaysWidget(activeDays: cubit.activeDays),
                 ],
               ),
             ),
-
-            const SizedBox(height: 25),
-
+            verticalSpace(24),
             SaveHabitBtn(),
           ],
         ),
