@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/core/styles/colors.dart';
 
 class StatCardWidget extends StatelessWidget {
@@ -27,7 +28,7 @@ class StatCardWidget extends StatelessWidget {
         child: Column(
           children: [
             Icon(icon, color: ColorsManager.primaryColor),
-            const SizedBox(height: 8),
+            verticalSpace(8),
             Text(
               value,
               style: GoogleFonts.poppins(

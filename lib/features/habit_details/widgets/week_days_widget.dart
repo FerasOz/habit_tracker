@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/core/models/habit_model.dart';
 import 'package:habit_tracker/core/styles/colors.dart';
 
@@ -21,7 +22,7 @@ class WeekDaysWidget extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
         ),
-        const SizedBox(height: 12),
+        verticalSpace(12),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: List.generate(7, (index) {
@@ -29,7 +30,7 @@ class WeekDaysWidget extends StatelessWidget {
             return Column(
               children: [
                 CircleAvatar(
-                  radius: 18,
+                  radius: 18.r,
                   backgroundColor: isActive
                       ? ColorsManager.primaryColor
                       : Colors.grey.shade300,
@@ -39,7 +40,7 @@ class WeekDaysWidget extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                const SizedBox(height: 6),
+                verticalSpace(6),
                 Text(days[index]),
               ],
             );

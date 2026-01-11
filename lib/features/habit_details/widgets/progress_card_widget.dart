@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/core/models/habit_model.dart';
 import 'package:habit_tracker/core/styles/colors.dart';
 
@@ -27,7 +28,7 @@ class ProgressCardWidget extends StatelessWidget {
             "Weekly Progress",
             style: GoogleFonts.poppins(color: Colors.white70, fontSize: 14.sp),
           ),
-          const SizedBox(height: 8),
+          verticalSpace(8),
           Text(
             "${habit.completedDays} / ${habit.targetPerWeek}",
             style: GoogleFonts.poppins(
@@ -36,7 +37,7 @@ class ProgressCardWidget extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: 12),
+          verticalSpace(12),
           LinearProgressIndicator(
             value: progress,
             backgroundColor: Colors.white30,

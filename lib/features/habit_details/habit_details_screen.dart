@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/core/models/habit_model.dart';
 import 'package:habit_tracker/features/cubit/habit_cubit.dart';
 import 'package:habit_tracker/features/habit_details/widgets/mark_as_done_btn.dart';
@@ -40,7 +41,7 @@ class HabitDetailsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ProgressCardWidget(habit: habit),
-            const SizedBox(height: 20),
+            verticalSpace(20),
             Row(
               children: [
                 StatCardWidget(
@@ -48,7 +49,7 @@ class HabitDetailsScreen extends StatelessWidget {
                   value: "${habit.currentStreak} days",
                   icon: Icons.local_fire_department,
                 ),
-                const SizedBox(width: 12),
+                verticalSpace(12),
                 StatCardWidget(
                   title: "Completed",
                   value: "${habit.completedDays}",
@@ -56,7 +57,7 @@ class HabitDetailsScreen extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            verticalSpace(20),
             WeekDaysWidget(habit: habit),
             const Spacer(),
             MarkAsDoneBtn(habit: habit),
