@@ -1,0 +1,12 @@
+{
+    "home": {
+        "title": "Habit Tracker",
+        "sub_title": "Build better habits",
+        "empty_habits":"No habits yet. Start by adding a new habit!",
+        "summary_card":{
+            "title":"Today's Progress",
+            "completed_habits":"habits completed"
+        },
+        "week":"this week"
+    }
+}
