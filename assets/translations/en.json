@@ -8,5 +8,15 @@
             "completed_habits":"habits completed"
         },
         "week":"this week"
+    },
+    "add_habits":{
+        "title":"Add New Habit",
+        "habit_title_textfield_label":"Habit Title",
+        "habit_title_textfield_hint":"e.g., Drink Water",
+        "habit_description_textfield_label":"Habit Description",
+        "habit_description_textfield_hint":"e.g., Drink 8 glasses of water daily",
+        "target_txt":"Target per week",
+        "times_txt":"times",
+        "save_btn":"Save Habit"
     }
 }
