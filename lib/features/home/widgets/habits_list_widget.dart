@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/core/helpers/spacing.dart';
-import 'package:habit_tracker/core/styles/colors.dart';
 import 'package:habit_tracker/features/cubit/habit_state.dart';
 import 'package:habit_tracker/features/home/widgets/habit_card_widget.dart';
 

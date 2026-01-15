@@ -42,7 +42,6 @@ class HabitItemWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// ===== TITLE + STATUS =====
             Row(
               children: [
                 Expanded(
@@ -55,17 +54,10 @@ class HabitItemWidget extends StatelessWidget {
                   ),
                 ),
                 if (habit.doneToday)
-                  Icon(
-                    Icons.check_circle,
-                    size: 20,
-                    color: Colors.green,
-                  ),
+                  Icon(Icons.check_circle, size: 20, color: Colors.green),
               ],
             ),
-
             verticalSpace(6),
-
-            /// ===== WEEK PROGRESS TEXT =====
             Text(
               "${habit.completedDays} / ${habit.targetPerWeek} this week",
               style: GoogleFonts.poppins(
@@ -75,28 +67,20 @@ class HabitItemWidget extends StatelessWidget {
             ),
 
             verticalSpace(8),
-
-            /// ===== PROGRESS BAR =====
             ClipRRect(
               borderRadius: BorderRadius.circular(6.r),
               child: LinearProgressIndicator(
                 value: progress.clamp(0.0, 1.0),
                 minHeight: 5.h,
                 backgroundColor: Colors.grey.withOpacity(0.2),
-                valueColor: AlwaysStoppedAnimation(
-                  ColorsManager.primaryColor,
-                ),
+                valueColor: AlwaysStoppedAnimation(ColorsManager.primaryColor),
               ),
             ),
 
             verticalSpace(12),
-
-            /// ===== ACTIVE DAYS + STREAK =====
             Row(
               children: [
-                Expanded(
-                  child: ActiveDaysRow(activeDays: habit.activeDays),
-                ),
+                Expanded(child: ActiveDaysRow(activeDays: habit.activeDays)),
                 if (habit.currentStreak > 0)
                   Padding(
                     padding: EdgeInsets.only(left: 8.w),
