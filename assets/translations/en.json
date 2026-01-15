@@ -1,42 +1,45 @@
 {
-    "home": {
-        "title": "Habit Tracker",
-        "sub_title": "Build better habits",
-        "empty_habits":"No habits yet. Start by adding a new habit!",
-        "summary_card":{
-            "title":"Today's Progress",
-            "completed_habits":"habits completed"
-        },
-        "week":"this week"
+  "home": {
+    "title": "Habit Tracker",
+    "subtitle": "Build better habits",
+    "emptyHabits": "No habits yet. Start by adding a new habit!",
+    "summary": {
+      "title": "Today's Progress",
+      "completed": "habits completed"
     },
-    "add_habits":{
-        "title":"Add New Habit",
-        "habit_title_textfield_label":"Habit Title",
-        "habit_title_textfield_hint":"e.g., Drink Water",
-        "habit_description_textfield_label":"Habit Description",
-        "habit_description_textfield_hint":"e.g., Drink 8 glasses of water daily",
-        "target_txt":"Target per week",
-        "times_txt":"times",
-        "save_btn":"Save Habit"
-    },
-    "habit_details":{
-        "weekly_prog_txt":"Weekly Progress",
-        "streak_stat_card_title":"Streak",
-        "streak_stat_card_value_txt":"days",
-        "completed_stat_card_title":"Completed",
-        "this_week":"This Week",
-        "mark_as_done_btn":"Mark as Done",
-        "undone_btn":"Undone Today"
-    },
-    "settings":{
-        "title":"Settings",
-        "appearance_section_title":"Appearance",
-        "dark_mode_txt":"Dark Mode",
-        "language_section_title":"Language",
-        "language_txt":"App Language",
-        "english":"English",
-        "arabic":"Arabic",
-        "about_section_title":"About",
-        "about_txt":"This app helps you track and build better habits to improve your daily life."
-    }
+    "thisWeek": "This week"
+  },
+
+  "addHabit": {
+    "title": "Add New Habit",
+    "nameLabel": "Habit Name",
+    "nameHint": "e.g. Drink Water",
+    "descriptionLabel": "Description",
+    "descriptionHint": "e.g. Drink 8 glasses of water daily",
+    "target": "Target per week",
+    "times": "times",
+    "save": "Save Habit"
+  },
+
+  "habitDetails": {
+    "weeklyProgress": "Weekly Progress",
+    "streakTitle": "Streak",
+    "days": "days",
+    "completedTitle": "Completed",
+    "thisWeek": "This Week",
+    "markDone": "Mark as Done",
+    "markUndone": "Not Done Today"
+  },
+
+  "settings": {
+    "title": "Settings",
+    "appearance": "Appearance",
+    "darkMode": "Dark Mode",
+    "language": "Language",
+    "appLanguage": "App Language",
+    "english": "English",
+    "arabic": "Arabic",
+    "about": "About",
+    "aboutText": "This app helps you track and build better habits to improve your daily life."
+  }
 }
