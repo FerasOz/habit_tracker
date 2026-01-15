@@ -18,5 +18,14 @@
         "target_txt":"Target per week",
         "times_txt":"times",
         "save_btn":"Save Habit"
+    },
+    "habit_details":{
+        "weekly_prog_txt":"Weekly Progress",
+        "streak_stat_card_title":"Streak",
+        "streak_stat_card_value_txt":"days",
+        "completed_stat_card_title":"Completed",
+        "this_week":"This Week",
+        "mark_as_done_btn":"Mark as Done",
+        "undone_btn":"Undone Today"
     }
 }
