@@ -1,3 +1,45 @@
 {
-    
+  "home": {
+    "title": "متتبع العادات",
+    "subtitle": "ابنِ عادات أفضل",
+    "emptyHabits": "لا توجد عادات بعد، ابدأ بإضافة عادة جديدة",
+    "summary": {
+      "title": "تقدم اليوم",
+      "completed": "عادات مكتملة"
+    },
+    "thisWeek": "هذا الأسبوع"
+  },
+
+  "addHabit": {
+    "title": "إضافة عادة جديدة",
+    "nameLabel": "اسم العادة",
+    "nameHint": "مثال: شرب الماء",
+    "descriptionLabel": "الوصف",
+    "descriptionHint": "مثال: شرب 8 أكواب ماء يوميًا",
+    "target": "الهدف الأسبوعي",
+    "times": "مرات",
+    "save": "حفظ العادة"
+  },
+
+  "habitDetails": {
+    "weeklyProgress": "التقدم الأسبوعي",
+    "streakTitle": "الاستمرارية",
+    "days": "أيام",
+    "completedTitle": "تم الإنجاز",
+    "thisWeek": "هذا الأسبوع",
+    "markDone": "تم إنجازه اليوم",
+    "markUndone": "لم يتم اليوم"
+  },
+
+  "settings": {
+    "title": "الإعدادات",
+    "appearance": "المظهر",
+    "darkMode": "الوضع الداكن",
+    "language": "اللغة",
+    "appLanguage": "لغة التطبيق",
+    "english": "الإنجليزية",
+    "arabic": "العربية",
+    "about": "حول التطبيق",
+    "aboutText": "يساعدك هذا التطبيق على تتبع وبناء عادات أفضل لتحسين حياتك اليومية."
+  }
 }
