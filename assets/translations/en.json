@@ -27,5 +27,16 @@
         "this_week":"This Week",
         "mark_as_done_btn":"Mark as Done",
         "undone_btn":"Undone Today"
+    },
+    "settings":{
+        "title":"Settings",
+        "appearance_section_title":"Appearance",
+        "dark_mode_txt":"Dark Mode",
+        "language_section_title":"Language",
+        "language_txt":"App Language",
+        "english":"English",
+        "arabic":"Arabic",
+        "about_section_title":"About",
+        "about_txt":"This app helps you track and build better habits to improve your daily life."
     }
 }
