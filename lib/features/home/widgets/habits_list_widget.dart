@@ -31,23 +31,12 @@ class HabitsListWidget extends StatelessWidget {
             ? 0.0
             : (habit.completedDays / habit.targetPerWeek).clamp(0.0, 1.0);
 
-        final achieved = habit.completedDays >= habit.targetPerWeek;
-        final streakColor = _streakColor(habit.currentStreak);
-
         return HabitCardWidget(
-          progress: progress,
           habit: habit,
-          achieved: achieved,
-          streakColor: streakColor,
+          progress: progress,
         );
       },
     );
   }
-
-  Color _streakColor(int streak) {
-    if (streak >= 30) return Colors.orange;
-    if (streak >= 14) return Colors.deepPurple;
-    if (streak >= 7) return Colors.blue;
-    return ColorsManager.primaryColor;
-  }
 }
+

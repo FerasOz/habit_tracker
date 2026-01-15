@@ -6,47 +6,35 @@ import 'package:habit_tracker/features/cubit/habit_cubit.dart';
 import 'package:habit_tracker/features/home/widgets/habit_item_widget.dart';
 
 class HabitCardWidget extends StatelessWidget {
-  final double progress;
   final HabitModel habit;
-  final bool achieved;
-  final Color streakColor;
+  final double progress;
 
   const HabitCardWidget({
     super.key,
-    required this.progress,
     required this.habit,
-    required this.achieved,
-    required this.streakColor,
+    required this.progress,
   });
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<HabitCubit>();
+
     return Dismissible(
       key: ValueKey(habit.id),
 
-      background: Container(
+      background: _swipeBackground(
+        color: Colors.green,
+        icon: Icons.check,
         alignment: Alignment.centerLeft,
-        padding: EdgeInsets.only(left: 20.w),
-        decoration: BoxDecoration(
-          color: Colors.green,
-          borderRadius: BorderRadius.circular(16.r),
-        ),
-        child: const Icon(Icons.check, color: Colors.white),
       ),
 
-      secondaryBackground: Container(
+      secondaryBackground: _swipeBackground(
+        color: Colors.red,
+        icon: Icons.delete,
         alignment: Alignment.centerRight,
-        padding: EdgeInsets.only(right: 20.w),
-        decoration: BoxDecoration(
-          color: Colors.red,
-          borderRadius: BorderRadius.circular(16.r),
-        ),
-        child: const Icon(Icons.delete, color: Colors.white),
       ),
 
       confirmDismiss: (direction) async {
-        final cubit = context.read<HabitCubit>();
-
         if (direction == DismissDirection.startToEnd) {
           cubit.updateHabit(
             habit.copyWith(
@@ -63,11 +51,24 @@ class HabitCardWidget extends StatelessWidget {
       },
 
       child: HabitItemWidget(
-        progress: progress,
         habit: habit,
-        achieved: achieved,
-        streakColor: streakColor,
       ),
+    );
+  }
+
+  Widget _swipeBackground({
+    required Color color,
+    required IconData icon,
+    required Alignment alignment,
+  }) {
+    return Container(
+      alignment: alignment,
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(18.r),
+      ),
+      child: Icon(icon, color: Colors.white),
     );
   }
 }

@@ -8,21 +8,16 @@ import 'package:habit_tracker/core/styles/colors.dart';
 import 'package:habit_tracker/features/home/widgets/active_days_row.dart';
 
 class HabitItemWidget extends StatelessWidget {
-  final double progress;
   final HabitModel habit;
-  final bool achieved;
-  final Color streakColor;
 
-  const HabitItemWidget({
-    super.key,
-    required this.progress,
-    required this.habit,
-    required this.achieved,
-    required this.streakColor,
-  });
+  const HabitItemWidget({super.key, required this.habit});
 
   @override
   Widget build(BuildContext context) {
+    final progress = habit.targetPerWeek == 0
+        ? 0.0
+        : habit.completedDays / habit.targetPerWeek;
+
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(
@@ -32,85 +27,89 @@ class HabitItemWidget extends StatelessWidget {
         );
       },
       child: Container(
-        padding: EdgeInsets.all(14.r),
+        padding: EdgeInsets.all(16.r),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(18.r),
+          borderRadius: BorderRadius.circular(16.r),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 10,
+              color: Colors.black.withOpacity(0.04),
+              blurRadius: 8,
               offset: const Offset(0, 4),
             ),
           ],
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            /// ===== TITLE + STATUS =====
             Row(
               children: [
-                CircleAvatar(
-                  radius: 22.r,
-                  backgroundColor: streakColor.withOpacity(0.15),
-                  child: Icon(
-                    habit.doneToday
-                        ? Icons.check_circle
-                        : Icons.circle_outlined,
-                    color: streakColor,
-                  ),
-                ),
-                horizontalSpace(14),
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        habit.title,
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 15.sp,
-                        ),
-                      ),
-                      verticalSpace(4),
-                      Text(
-                        "🔥 ${habit.currentStreak} day streak",
-                        style: GoogleFonts.poppins(
-                          fontSize: 12.sp,
-                          color: streakColor,
-                        ),
-                      ),
-                    ],
+                  child: Text(
+                    habit.title,
+                    style: GoogleFonts.poppins(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
+                if (habit.doneToday)
+                  Icon(
+                    Icons.check_circle,
+                    size: 20,
+                    color: Colors.green,
+                  ),
+              ],
+            ),
 
-                if (achieved)
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 10.w,
-                      vertical: 4.h,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.orange,
-                      borderRadius: BorderRadius.circular(12.r),
-                    ),
+            verticalSpace(6),
+
+            /// ===== WEEK PROGRESS TEXT =====
+            Text(
+              "${habit.completedDays} / ${habit.targetPerWeek} this week",
+              style: GoogleFonts.poppins(
+                fontSize: 12.sp,
+                color: Colors.grey[600],
+              ),
+            ),
+
+            verticalSpace(8),
+
+            /// ===== PROGRESS BAR =====
+            ClipRRect(
+              borderRadius: BorderRadius.circular(6.r),
+              child: LinearProgressIndicator(
+                value: progress.clamp(0.0, 1.0),
+                minHeight: 5.h,
+                backgroundColor: Colors.grey.withOpacity(0.2),
+                valueColor: AlwaysStoppedAnimation(
+                  ColorsManager.primaryColor,
+                ),
+              ),
+            ),
+
+            verticalSpace(12),
+
+            /// ===== ACTIVE DAYS + STREAK =====
+            Row(
+              children: [
+                Expanded(
+                  child: ActiveDaysRow(activeDays: habit.activeDays),
+                ),
+                if (habit.currentStreak > 0)
+                  Padding(
+                    padding: EdgeInsets.only(left: 8.w),
                     child: Text(
-                      "Goal 🎯",
-                      style: TextStyle(color: Colors.white, fontSize: 11.sp),
+                      "🔥 ${habit.currentStreak}",
+                      style: GoogleFonts.poppins(
+                        fontSize: 12.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
               ],
             ),
-            verticalSpace(12),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10.r),
-              child: LinearProgressIndicator(
-                value: progress,
-                minHeight: 6.h,
-                backgroundColor: Colors.grey.withOpacity(0.2),
-                valueColor: AlwaysStoppedAnimation(ColorsManager.primaryColor),
-              ),
-            ),
-            verticalSpace(10),
-            ActiveDaysRow(activeDays: habit.activeDays),
           ],
         ),
       ),
