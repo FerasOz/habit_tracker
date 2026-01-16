@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:habit_tracker/core/routing/app_routers.dart';
@@ -14,12 +15,15 @@ class HabitTrackerApp extends StatelessWidget {
       minTextAdapt: true,
       builder: (context, child) {
         return MaterialApp(
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
           debugShowCheckedModeBanner: false,
           title: 'Habit Tracker',
           themeMode: ThemeMode.system,
           // theme: lightTheme,
           // darkTheme: darkTheme,
-                    onGenerateRoute: appRouters.onGenerateRoute,
+          onGenerateRoute: appRouters.onGenerateRoute,
           initialRoute: Routes.homeScreen,
         );
       },
