@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/core/styles/colors.dart';
+import 'package:habit_tracker/generated/locale_keys.g.dart';
 
 class SummaryCardWidget extends StatelessWidget {
   final int done;
@@ -41,7 +43,7 @@ class SummaryCardWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Today's Progress",
+                LocaleKeys.home_summary_title.tr(),
                 style: GoogleFonts.poppins(
                   color: Colors.white70,
                   fontSize: 14.sp,
@@ -56,7 +58,7 @@ class SummaryCardWidget extends StatelessWidget {
           ),
           verticalSpace(12),
           Text(
-            "$done / $total habits completed",
+            "$done / $total ${LocaleKeys.home_summary_completed.tr()}",
             style: GoogleFonts.poppins(
               color: Colors.white,
               fontSize: 20.sp,
