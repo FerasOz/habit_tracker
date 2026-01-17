@@ -18,6 +18,7 @@
     "descriptionHint": "e.g. Drink 8 glasses of water daily",
     "target": "Target per week",
     "times": "times",
+    "activeDays": "Active days",
     "save": "Save Habit"
   },
 

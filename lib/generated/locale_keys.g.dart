@@ -18,6 +18,7 @@ abstract class  LocaleKeys {
   static const addHabit_descriptionHint = 'addHabit.descriptionHint';
   static const addHabit_target = 'addHabit.target';
   static const addHabit_times = 'addHabit.times';
+  static const addHabit_activeDays = 'addHabit.activeDays';
   static const addHabit_save = 'addHabit.save';
   static const addHabit = 'addHabit';
   static const habitDetails_weeklyProgress = 'habitDetails.weeklyProgress';

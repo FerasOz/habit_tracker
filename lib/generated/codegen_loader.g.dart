@@ -33,6 +33,7 @@ class CodegenLoader extends AssetLoader{
     "descriptionHint": "مثال: شرب 8 أكواب ماء يوميًا",
     "target": "الهدف الأسبوعي",
     "times": "مرات",
+    "activeDays": "الأيام النشطة",
     "save": "حفظ العادة"
   },
   "habitDetails": {
@@ -75,6 +76,7 @@ static const Map<String,dynamic> _en = {
     "descriptionHint": "e.g. Drink 8 glasses of water daily",
     "target": "Target per week",
     "times": "times",
+    "activeDays": "Active days",
     "save": "Save Habit"
   },
   "habitDetails": {
