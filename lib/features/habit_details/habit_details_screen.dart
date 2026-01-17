@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,6 +9,7 @@ import 'package:habit_tracker/features/habit_details/widgets/mark_as_done_btn.da
 import 'package:habit_tracker/features/habit_details/widgets/progress_card_widget.dart';
 import 'package:habit_tracker/features/habit_details/widgets/stat_card_widget.dart';
 import 'package:habit_tracker/features/habit_details/widgets/week_days_widget.dart';
+import 'package:habit_tracker/generated/locale_keys.g.dart';
 
 class HabitDetailsScreen extends StatelessWidget {
   final HabitModel habit;
@@ -45,13 +47,13 @@ class HabitDetailsScreen extends StatelessWidget {
             Row(
               children: [
                 StatCardWidget(
-                  title: "Streak",
-                  value: "${habit.currentStreak} days",
+                  title: LocaleKeys.habitDetails_streakTitle.tr(),
+                  value: "${habit.currentStreak} ${LocaleKeys.habitDetails_days.tr()}",
                   icon: Icons.local_fire_department,
                 ),
                 verticalSpace(12),
                 StatCardWidget(
-                  title: "Completed",
+                  title: LocaleKeys.habitDetails_completedTitle.tr(),
                   value: "${habit.completedDays}",
                   icon: Icons.check_circle,
                 ),
