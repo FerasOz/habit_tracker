@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +11,7 @@ import 'package:habit_tracker/features/cubit/habit_cubit.dart';
 import 'package:habit_tracker/features/cubit/habit_state.dart';
 import 'package:habit_tracker/features/home/widgets/habits_list_widget.dart';
 import 'package:habit_tracker/features/home/widgets/summary_card_widget.dart';
+import 'package:habit_tracker/generated/locale_keys.g.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -24,7 +26,7 @@ class HomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Habits Tracker",
+              LocaleKeys.home_title.tr(),
               style: GoogleFonts.poppins(
                 fontSize: 22.sp,
                 fontWeight: FontWeight.w600,
@@ -32,7 +34,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             Text(
-              "Build better habits",
+              LocaleKeys.home_subtitle.tr(),
               style: GoogleFonts.poppins(fontSize: 14.sp, color: Colors.grey),
             ),
           ],
@@ -62,7 +64,7 @@ class HomeScreen extends StatelessWidget {
           }
 
           if (state.habits.isEmpty) {
-            return Center(child: Text("No habits yet"));
+            return Center(child: Text(LocaleKeys.home_emptyHabits.tr()));
           }
 
           final total = state.habits.length;
