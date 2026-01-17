@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:habit_tracker/core/helpers/spacing.dart';
+import 'package:habit_tracker/generated/locale_keys.g.dart';
 
 class ActiveDaysWidget extends StatelessWidget {
   ValueNotifier<Set<int>> activeDays;
@@ -11,8 +13,8 @@ class ActiveDaysWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Text(
-          "Active days",
+        Text(
+          LocaleKeys.addHabit_activeDays.tr(),
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
         verticalSpace(8),

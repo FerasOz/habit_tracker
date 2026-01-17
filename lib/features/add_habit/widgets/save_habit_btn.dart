@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habit_tracker/core/models/habit_model.dart';
 import 'package:habit_tracker/features/cubit/habit_cubit.dart';
+import 'package:habit_tracker/generated/locale_keys.g.dart';
 import 'package:uuid/uuid.dart';
 
 class SaveHabitBtn extends StatelessWidget {
@@ -34,7 +36,7 @@ class SaveHabitBtn extends StatelessWidget {
 
           Navigator.pop(context);
         },
-        child: const Text("Save Habit"),
+        child: Text(LocaleKeys.addHabit_save.tr()),
       ),
     );
   }
