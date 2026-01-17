@@ -1,7 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/core/styles/colors.dart';
+import 'package:habit_tracker/generated/locale_keys.g.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -19,7 +22,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Settings",
+          LocaleKeys.settings_title.tr(),
           style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
         ),
         backgroundColor: Colors.transparent,
@@ -29,15 +32,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          _sectionTitle("Appearance"),
+          _sectionTitle(LocaleKeys.settings_appearance.tr()),
           _settingsCard(
             child: Row(
               children: [
                 const Icon(Icons.dark_mode_outlined),
-                const SizedBox(width: 12),
+                horizontalSpace(12),
                 Expanded(
                   child: Text(
-                    "Dark Mode",
+                    LocaleKeys.settings_darkMode.tr(),
                     style: GoogleFonts.poppins(fontSize: 15.sp),
                   ),
                 ),
@@ -49,14 +52,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
                     /// لاحقًا تربطها بـ theme cubit أو provider أو shared pref
                   },
-                )
+                ),
               ],
             ),
           ),
 
-          const SizedBox(height: 14),
+          verticalSpace(14),
 
-          _sectionTitle("Language"),
+          _sectionTitle(LocaleKeys.settings_language.tr()),
           _settingsCard(
             child: Row(
               children: [
@@ -64,18 +67,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    "App Language",
+                    LocaleKeys.settings_language.tr(),
                     style: GoogleFonts.poppins(fontSize: 16.sp),
                   ),
                 ),
                 DropdownButton<String>(
                   value: language,
                   underline: const SizedBox(),
-                  items: const [
+                  items: [
                     DropdownMenuItem(
-                        value: "English", child: Text("English")),
+                      value: "English",
+                      child: Text(LocaleKeys.settings_english.tr()),
+                    ),
                     DropdownMenuItem(
-                        value: "Arabic", child: Text("العربية")),
+                      value: "Arabic",
+                      child: Text(LocaleKeys.settings_arabic.tr()),
+                    ),
                   ],
                   onChanged: (value) {
                     setState(() => language = value!);
@@ -85,14 +92,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     /// او
                     /// context.setLocale(Locale('en'))
                   },
-                )
+                ),
               ],
             ),
           ),
 
-          const SizedBox(height: 14),
+          verticalSpace(14),
 
-          _sectionTitle("About"),
+          _sectionTitle(LocaleKeys.settings_about.tr()),
           _settingsCard(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,7 +111,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     fontSize: 16.sp,
                   ),
                 ),
-                const SizedBox(height: 4),
+                verticalSpace(4),
                 Text(
                   "Version 1.0.0",
                   style: GoogleFonts.poppins(
@@ -112,12 +119,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     fontSize: 14.sp,
                   ),
                 ),
-                const SizedBox(height: 6),
+                verticalSpace(6),
                 Text(
                   "Built with Flutter 💙",
-                  style: GoogleFonts.poppins(
-                    fontSize: 14.sp,
-                  ),
+                  style: GoogleFonts.poppins(fontSize: 14.sp),
                 ),
               ],
             ),
@@ -132,10 +137,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       padding: const EdgeInsets.only(bottom: 6),
       child: Text(
         title,
-        style: GoogleFonts.poppins(
-          fontWeight: FontWeight.w600,
-          fontSize: 14,
-        ),
+        style: GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 14),
       ),
     );
   }
