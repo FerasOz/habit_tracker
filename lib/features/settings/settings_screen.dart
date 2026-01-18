@@ -1,19 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/core/styles/colors.dart';
+import 'package:habit_tracker/features/cubit/habit_cubit.dart';
+import 'package:habit_tracker/features/cubit/habit_state.dart';
 import 'package:habit_tracker/generated/locale_keys.g.dart';
 
-class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
-
-  @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
-}
-
-class _SettingsScreenState extends State<SettingsScreen> {
+class SettingsScreen extends StatelessWidget {
+  SettingsScreen({super.key});
   bool isDark = false;
   String language = "English";
 
@@ -48,9 +45,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   value: isDark,
                   activeColor: ColorsManager.primaryColor,
                   onChanged: (v) {
-                    setState(() => isDark = v);
-
-                    /// لاحقًا تربطها بـ theme cubit أو provider أو shared pref
+                    //todo change theme mode
                   },
                 ),
               ],
@@ -71,26 +66,29 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     style: GoogleFonts.poppins(fontSize: 16.sp),
                   ),
                 ),
-                DropdownButton<String>(
-                  value: language,
-                  underline: const SizedBox(),
-                  items: [
-                    DropdownMenuItem(
-                      value: "English",
-                      child: Text(LocaleKeys.settings_english.tr()),
-                    ),
-                    DropdownMenuItem(
-                      value: "Arabic",
-                      child: Text(LocaleKeys.settings_arabic.tr()),
-                    ),
-                  ],
-                  onChanged: (value) {
-                    setState(() => language = value!);
-
-                    /// هنا لاحقًا تضيف:
-                    /// context.setLocale(Locale('ar'))
-                    /// او
-                    /// context.setLocale(Locale('en'))
+                BlocBuilder<HabitCubit, HabitState>(
+                  builder: (context, state) {
+                    return DropdownButton<Locale>(
+                      value: state.locale,
+                      underline: const SizedBox(),
+                      items: [
+                        DropdownMenuItem(
+                          value: const Locale('en'),
+                          child: Text(LocaleKeys.settings_english.tr()),
+                        ),
+                        DropdownMenuItem(
+                          value: const Locale('ar'),
+                          child: Text(LocaleKeys.settings_arabic.tr()),
+                        ),
+                      ],
+                      onChanged: (locale) {
+                        if (locale == null) return;
+                        context.read<HabitCubit>().changeLanguage(
+                          context,
+                          locale,
+                        );
+                      },
+                    );
                   },
                 ),
               ],

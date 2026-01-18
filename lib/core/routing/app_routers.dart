@@ -34,7 +34,12 @@ class AppRouters {
           ),
         );
       case Routes.settingsScreen:
-        return MaterialPageRoute(builder: (_) => SettingsScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => HabitCubit(),
+            child: SettingsScreen(),
+          ),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) =>
