@@ -8,8 +8,7 @@ import 'package:habit_tracker/features/settings/widgets/change_theme_section.dar
 import 'package:habit_tracker/generated/locale_keys.g.dart';
 
 class SettingsScreen extends StatelessWidget {
-  SettingsScreen({super.key});
-  String language = "English";
+  const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
