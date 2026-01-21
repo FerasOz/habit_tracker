@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habit_tracker/core/helpers/constants.dart';
-import 'package:habit_tracker/core/helpers/habit_storage.dart';
+import 'package:habit_tracker/core/helpers/app_storage.dart';
 import 'package:habit_tracker/core/models/habit_model.dart';
 import 'package:habit_tracker/features/cubit/habit_state.dart';
 
@@ -19,7 +19,7 @@ class HabitCubit extends Cubit<HabitState> {
     try {
       emit(state.copyWith(fetchHabitsStatus: RequestsStatus.loading));
 
-      final habits = await HabitStorage.getHabits();
+      final habits = await AppStorage.getHabits();
 
       emit(
         state.copyWith(
@@ -41,7 +41,7 @@ class HabitCubit extends Cubit<HabitState> {
   Future<void> addHabit(HabitModel habit) async {
     final List<HabitModel> updated = List.from(state.habits)..add(habit);
 
-    await HabitStorage.saveHabits(updated);
+    await AppStorage.saveHabits(updated);
 
     emit(state.copyWith(habits: updated));
   }
@@ -50,7 +50,7 @@ class HabitCubit extends Cubit<HabitState> {
   Future<void> deleteHabit(String id) async {
     final updated = state.habits.where((h) => h.id != id).toList();
 
-    await HabitStorage.saveHabits(updated);
+    await AppStorage.saveHabits(updated);
 
     emit(state.copyWith(habits: updated));
   }
@@ -62,7 +62,7 @@ class HabitCubit extends Cubit<HabitState> {
       return h;
     }).toList();
 
-    await HabitStorage.saveHabits(updated);
+    await AppStorage.saveHabits(updated);
 
     emit(state.copyWith(habits: updated));
   }
@@ -70,6 +70,17 @@ class HabitCubit extends Cubit<HabitState> {
   // change language
   Future<void> changeLanguage(BuildContext context, Locale locale) async {
     await context.setLocale(locale);
+    await AppStorage.saveLanguage(locale.languageCode);
     emit(state.copyWith(locale: locale));
+  }
+
+  Future<void> loadSavedLanguage(BuildContext context) async {
+    final savedLang = await AppStorage.getSavedLanguage();
+
+    if (savedLang != null) {
+      final locale = Locale(savedLang);
+      await context.setLocale(locale);
+      emit(state.copyWith(locale: locale));
+    }
   }
 }
