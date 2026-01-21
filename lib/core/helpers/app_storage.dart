@@ -3,9 +3,10 @@ import 'dart:convert';
 import 'package:habit_tracker/core/models/habit_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class HabitStorage {
+class AppStorage {
   static late SharedPreferences _prefs;
-  static const String key = "HABITS_DATA";
+  static const String _habitsKey = "HABITS_DATA";
+  static const String _languageKey = 'APP_LANGUAGE';
 
   static Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
@@ -15,12 +16,12 @@ class HabitStorage {
     final String jsonString = jsonEncode(
       habits.map((habit) => habit.toMap()).toList(),
     );
-    await _prefs.setString(key, jsonString);
+    await _prefs.setString(_habitsKey, jsonString);
   }
 
   static Future<List<HabitModel>> getHabits() async {
     try {
-      final jsonString = _prefs.getString(key);
+      final jsonString = _prefs.getString(_habitsKey);
       if (jsonString == null) return [];
 
       final List decoded = jsonDecode(jsonString);
@@ -49,5 +50,15 @@ class HabitStorage {
 
   static Future<void> clearAllData() async {
     await _prefs.clear();
+  }
+
+  // save language
+
+  static Future<void> saveLanguage(String code) async {
+    await _prefs.setString(_languageKey, code);
+  }
+
+  static Future<String?> getSavedLanguage() async {
+    return _prefs.getString(_languageKey);
   }
 }
