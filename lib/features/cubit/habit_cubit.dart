@@ -74,13 +74,14 @@ class HabitCubit extends Cubit<HabitState> {
     emit(state.copyWith(locale: locale));
   }
 
-  Future<void> loadSavedLanguage(BuildContext context) async {
-    final savedLang = await AppStorage.getSavedLanguage();
-
-    if (savedLang != null) {
-      final locale = Locale(savedLang);
-      await context.setLocale(locale);
-      emit(state.copyWith(locale: locale));
-    }
+Future<Locale?> loadSavedLanguage() async {
+  final savedLang = await AppStorage.getSavedLanguage();
+  if (savedLang != null) {
+    final locale = Locale(savedLang);
+    emit(state.copyWith(locale: locale));
+    return locale;
   }
+  return null;
+}
+
 }
