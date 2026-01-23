@@ -9,34 +9,36 @@ import 'package:habit_tracker/features/home/home_screen.dart';
 import 'package:habit_tracker/features/settings/settings_screen.dart';
 
 class AppRouters {
+  final HabitCubit habitCubit = HabitCubit()..loadSavedLanguage()..fetchHabits();
+
   Route? onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.homeScreen:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => HabitCubit()..fetchHabits(),
+          builder: (_) => BlocProvider.value(
+            value: habitCubit,
             child: HomeScreen(),
           ),
         );
       case Routes.addHabitScreen:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => HabitCubit(),
+          builder: (_) => BlocProvider.value(
+            value: habitCubit,
             child: AddHabitScreen(),
           ),
         );
       case Routes.habitDetailsScreen:
         final habit = settings.arguments as HabitModel;
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => HabitCubit(),
+          builder: (_) => BlocProvider.value(
+            value: habitCubit,
             child: HabitDetailsScreen(habit: habit),
           ),
         );
       case Routes.settingsScreen:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => HabitCubit(),
+          builder: (_) => BlocProvider.value(
+            value: habitCubit,
             child: SettingsScreen(),
           ),
         );
