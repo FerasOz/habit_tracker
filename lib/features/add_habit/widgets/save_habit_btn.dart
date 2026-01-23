@@ -33,7 +33,8 @@ class SaveHabitBtn extends StatelessWidget {
           );
 
           cubit.addHabit(habit);
-
+          cubit.titleController.clear();
+          cubit.descriptionController.clear();
           Navigator.pop(context);
         },
         child: Text(LocaleKeys.addHabit_save.tr()),
