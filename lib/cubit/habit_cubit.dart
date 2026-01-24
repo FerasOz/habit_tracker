@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habit_tracker/core/helpers/constants.dart';
-import 'package:habit_tracker/core/helpers/app_storage.dart';
+import 'package:habit_tracker/data/local/app_storage.dart';
 import 'package:habit_tracker/data/models/habit_model.dart';
 import 'package:habit_tracker/cubit/habit_state.dart';
 
