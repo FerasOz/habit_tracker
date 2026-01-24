@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:habit_tracker/core/helpers/constants.dart';
-import 'package:habit_tracker/core/models/habit_model.dart';
+import 'package:habit_tracker/data/models/habit_model.dart';
 
 class HabitState {
   final RequestsStatus fetchHabitsStatus;

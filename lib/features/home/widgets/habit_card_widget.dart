@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:habit_tracker/core/models/habit_model.dart';
-import 'package:habit_tracker/features/cubit/habit_cubit.dart';
+import 'package:habit_tracker/data/models/habit_model.dart';
+import 'package:habit_tracker/cubit/habit_cubit.dart';
 import 'package:habit_tracker/features/home/widgets/habit_item_widget.dart';
 
 class HabitCardWidget extends StatelessWidget {

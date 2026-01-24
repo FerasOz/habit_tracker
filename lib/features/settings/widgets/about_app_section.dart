@@ -6,7 +6,7 @@ import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/generated/locale_keys.g.dart';
 
 class AboutAppSection extends StatelessWidget {
-  const AboutAppSection({Key? key}) : super(key: key);
+  const AboutAppSection({super.key});
 
   @override
   Widget build(BuildContext context) {

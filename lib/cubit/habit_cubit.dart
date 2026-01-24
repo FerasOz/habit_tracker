@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habit_tracker/core/helpers/constants.dart';
 import 'package:habit_tracker/core/helpers/app_storage.dart';
-import 'package:habit_tracker/core/models/habit_model.dart';
-import 'package:habit_tracker/features/cubit/habit_state.dart';
+import 'package:habit_tracker/data/models/habit_model.dart';
+import 'package:habit_tracker/cubit/habit_state.dart';
 
 class HabitCubit extends Cubit<HabitState> {
   HabitCubit() : super(HabitState());

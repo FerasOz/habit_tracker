@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/core/helpers/spacing.dart';
-import 'package:habit_tracker/features/cubit/habit_cubit.dart';
-import 'package:habit_tracker/features/cubit/habit_state.dart';
+import 'package:habit_tracker/cubit/habit_cubit.dart';
+import 'package:habit_tracker/cubit/habit_state.dart';
 import 'package:habit_tracker/generated/locale_keys.g.dart';
 
 class ChangeLangSection extends StatelessWidget {

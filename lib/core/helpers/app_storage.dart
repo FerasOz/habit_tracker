@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:habit_tracker/core/models/habit_model.dart';
+import 'package:habit_tracker/data/models/habit_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppStorage {

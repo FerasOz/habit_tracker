@@ -41,7 +41,7 @@ class ChangeThemeSection extends StatelessWidget {
               ),
               Switch(
                 value: isDark,
-                activeColor: ColorsManager.primaryColor,
+                activeThumbColor: ColorsManager.primaryColor,
                 onChanged: (v) {
                   //todo change theme mode
                 },

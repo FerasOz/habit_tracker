@@ -6,7 +6,7 @@ import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/features/add_habit/widgets/active_days_widget.dart';
 import 'package:habit_tracker/features/add_habit/widgets/add_habit_text_field_widget.dart';
 import 'package:habit_tracker/features/add_habit/widgets/save_habit_btn.dart';
-import 'package:habit_tracker/features/cubit/habit_cubit.dart';
+import 'package:habit_tracker/cubit/habit_cubit.dart';
 import 'package:habit_tracker/generated/locale_keys.g.dart';
 
 class AddHabitScreen extends StatelessWidget {

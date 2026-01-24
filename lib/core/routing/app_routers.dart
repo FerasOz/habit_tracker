@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:habit_tracker/core/models/habit_model.dart';
+import 'package:habit_tracker/data/models/habit_model.dart';
 import 'package:habit_tracker/core/routing/routes.dart';
 import 'package:habit_tracker/features/add_habit/add_habit_screen.dart';
-import 'package:habit_tracker/features/cubit/habit_cubit.dart';
+import 'package:habit_tracker/cubit/habit_cubit.dart';
 import 'package:habit_tracker/features/habit_details/habit_details_screen.dart';
 import 'package:habit_tracker/features/home/home_screen.dart';
 import 'package:habit_tracker/features/settings/settings_screen.dart';
