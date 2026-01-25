@@ -15,38 +15,29 @@ class MarkAsDoneBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<HabitCubit>();
+    final todayKey = DateTime.now().toIso8601String().substring(0, 10);
+    final doneToday = habit.completedDates.contains(todayKey);
 
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
-          final updatedHabit = HabitModel(
-            id: habit.id,
-            title: habit.title,
-            description: habit.description,
-            createdAt: habit.createdAt,
-            targetPerWeek: habit.targetPerWeek,
-            completedDays: habit.doneToday
-                ? habit.completedDays - 1
-                : habit.completedDays + 1,
-            currentStreak: habit.doneToday
-                ? habit.currentStreak - 1
-                : habit.currentStreak + 1,
-            doneToday: !habit.doneToday,
-            activeDays: habit.activeDays,
-          );
+          final newDates = {...habit.completedDates};
 
-          cubit.updateHabit(updatedHabit);
+          doneToday ? newDates.remove(todayKey) : newDates.add(todayKey);
+
+          cubit.updateHabit(habit.copyWith(completedDates: newDates));
+
           Navigator.pop(context);
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: habit.doneToday
-              ? Colors.grey
-              : ColorsManager.primaryColor,
+          backgroundColor: doneToday ? Colors.grey : ColorsManager.primaryColor,
           padding: EdgeInsets.symmetric(vertical: 14.h),
         ),
         child: Text(
-          habit.doneToday ? LocaleKeys.habitDetails_markUndone.tr() : LocaleKeys.habitDetails_markDone.tr(),
+          doneToday
+              ? LocaleKeys.habitDetails_markUndone.tr()
+              : LocaleKeys.habitDetails_markDone.tr(),
           style: GoogleFonts.poppins(fontSize: 16.sp, color: Colors.white),
         ),
       ),

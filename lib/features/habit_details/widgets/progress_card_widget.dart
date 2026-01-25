@@ -13,10 +13,11 @@ class ProgressCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final progress = (habit.completedDays / habit.targetPerWeek).clamp(
-      0.0,
-      1.0,
-    );
+    final completedThisWeek = habit.completedThisWeek();
+    final target = habit.activeDays.length;
+
+    final progress = target == 0 ? 0.0 : completedThisWeek / target;
+
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -26,13 +27,11 @@ class ProgressCardWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            LocaleKeys.habitDetails_weeklyProgress.tr(),
-            style: GoogleFonts.poppins(color: Colors.white70, fontSize: 14.sp),
-          ),
+          Text(LocaleKeys.habitDetails_weeklyProgress.tr(),
+              style: GoogleFonts.poppins(color: Colors.white70)),
           verticalSpace(8),
           Text(
-            "${habit.completedDays} / ${habit.targetPerWeek}",
+            "$completedThisWeek / $target",
             style: GoogleFonts.poppins(
               color: Colors.white,
               fontSize: 26.sp,
@@ -41,7 +40,7 @@ class ProgressCardWidget extends StatelessWidget {
           ),
           verticalSpace(12),
           LinearProgressIndicator(
-            value: progress,
+            value: progress.clamp(0, 1),
             backgroundColor: Colors.white30,
             valueColor: const AlwaysStoppedAnimation(Colors.white),
           ),

@@ -18,15 +18,11 @@ class HabitDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     final cubit = context.read<HabitCubit>();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          habit.title,
-          style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
-        ),
+        title: Text(habit.title, style: GoogleFonts.poppins(fontWeight: FontWeight.w600)),
         actions: [
           IconButton(
             icon: const Icon(Icons.delete_outline),
@@ -40,7 +36,6 @@ class HabitDetailsScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ProgressCardWidget(habit: habit),
             verticalSpace(20),
@@ -48,13 +43,13 @@ class HabitDetailsScreen extends StatelessWidget {
               children: [
                 StatCardWidget(
                   title: LocaleKeys.habitDetails_streakTitle.tr(),
-                  value: "${habit.currentStreak} ${LocaleKeys.habitDetails_days.tr()}",
+                  value: "${habit.currentStreak()}",
                   icon: Icons.local_fire_department,
                 ),
-                verticalSpace(12),
+                horizontalSpace(12),
                 StatCardWidget(
                   title: LocaleKeys.habitDetails_completedTitle.tr(),
-                  value: "${habit.completedDays}",
+                  value: "${habit.completedDates.length}",
                   icon: Icons.check_circle,
                 ),
               ],
@@ -69,3 +64,4 @@ class HabitDetailsScreen extends StatelessWidget {
     );
   }
 }
+

@@ -9,26 +9,25 @@ import 'package:habit_tracker/generated/locale_keys.g.dart';
 
 class WeekDaysWidget extends StatelessWidget {
   final HabitModel habit;
-
   const WeekDaysWidget({super.key, required this.habit});
 
   @override
   Widget build(BuildContext context) {
-    final days = ["M", "T", "W", "T", "F", "S", "S"];
+    final today = DateTime.now();
+
     return Column(
       children: [
         Text(
           LocaleKeys.habitDetails_thisWeek.tr(),
-          style: GoogleFonts.poppins(
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w500,
-          ),
+          style: GoogleFonts.poppins(fontSize: 16.sp),
         ),
         verticalSpace(12),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: List.generate(7, (index) {
-            final isActive = habit.activeDays.contains(index);
+            final day = index + 1;
+            final isActive = habit.activeDays.contains(day);
+
             return Column(
               children: [
                 CircleAvatar(
@@ -43,7 +42,7 @@ class WeekDaysWidget extends StatelessWidget {
                   ),
                 ),
                 verticalSpace(6),
-                Text(days[index]),
+                Text(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"][index]),
               ],
             );
           }),
