@@ -6,6 +6,27 @@ class HabitModel {
   final List<int> activeDays;
   final Set<String> completedDates;
 
+  int completedThisWeek() {
+    final now = DateTime.now();
+    final weekStart = now.subtract(Duration(days: now.weekday - 1));
+
+    return completedDates.where((d) {
+      final date = DateTime.parse(d);
+      return date.isAfter(weekStart.subtract(const Duration(days: 1)));
+    }).length;
+  }
+
+  int currentStreak() {
+    int streak = 0;
+    DateTime day = DateTime.now();
+
+    while (completedDates.contains(day.toIso8601String().substring(0, 10))) {
+      streak++;
+      day = day.subtract(const Duration(days: 1));
+    }
+    return streak;
+  }
+
   HabitModel({
     required this.id,
     required this.title,
