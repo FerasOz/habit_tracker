@@ -7,17 +7,18 @@ import 'package:habit_tracker/features/home/widgets/habit_item_widget.dart';
 
 class HabitCardWidget extends StatelessWidget {
   final HabitModel habit;
-  final double progress;
 
   const HabitCardWidget({
     super.key,
     required this.habit,
-    required this.progress,
   });
 
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<HabitCubit>();
+
+    final todayKey = DateTime.now().toIso8601String().substring(0, 10);
+    final isDoneToday = habit.completedDates.contains(todayKey);
 
     return Dismissible(
       key: ValueKey(habit.id),
@@ -36,13 +37,18 @@ class HabitCardWidget extends StatelessWidget {
 
       confirmDismiss: (direction) async {
         if (direction == DismissDirection.startToEnd) {
+          final updatedDates = {...habit.completedDates};
+
+          if (isDoneToday) {
+            updatedDates.remove(todayKey);
+          } else {
+            updatedDates.add(todayKey);
+          }
+
           cubit.updateHabit(
-            habit.copyWith(
-              doneToday: true,
-              completedDays: habit.completedDays + 1,
-              currentStreak: habit.currentStreak + 1,
-            ),
+            habit.copyWith(completedDates: updatedDates),
           );
+
           return false;
         } else {
           cubit.deleteHabit(habit.id);
@@ -50,9 +56,7 @@ class HabitCardWidget extends StatelessWidget {
         }
       },
 
-      child: HabitItemWidget(
-        habit: habit,
-      ),
+      child: HabitItemWidget(habit: habit),
     );
   }
 

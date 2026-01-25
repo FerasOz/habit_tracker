@@ -66,26 +66,33 @@ class HomeScreen extends StatelessWidget {
           if (state.habits.isEmpty) {
             return Center(child: Text(LocaleKeys.home_emptyHabits.tr()));
           }
+          final habits = context.read<HabitCubit>().habitsForSelectedDay;
+          final todayKey = DateFormat('yyyy-MM-dd').format(state.selectedDay);
 
-          final total = state.habits.length;
-          final doneToday = state.habits.where((h) => h.doneToday).length;
-          final double progress = total == 0 ? 0 : doneToday / total;
+          final doneCount = habits
+              .where((h) => h.completedDates.contains(todayKey))
+              .length;
 
           return RefreshIndicator(
             onRefresh: () {
               return context.read<HabitCubit>().fetchHabits();
             },
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
                   SummaryCardWidget(
-                    done: doneToday,
-                    total: total,
-                    progress: progress,
+                    done: doneCount,
+                    total: habits.length,
+                    progress: habits.isEmpty ? 0 : doneCount / habits.length,
                   ),
-                  verticalSpace(20),
-                  Expanded(child: HabitsListWidget(state: state)),
+                  verticalSpace(16),
+                  Expanded(
+                    child: HabitsListWidget(
+                      habits: habits,
+                      selectedDay: state.selectedDay,
+                    ),
+                  ),
                 ],
               ),
             ),

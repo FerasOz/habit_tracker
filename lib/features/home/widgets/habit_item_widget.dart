@@ -16,9 +16,15 @@ class HabitItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final progress = habit.targetPerWeek == 0
-        ? 0.0
-        : habit.completedDays / habit.targetPerWeek;
+    final completedThisWeek = habit.completedThisWeek();
+    final target = habit.activeDays.length;
+
+    final progress = target == 0 ? 0.0 : completedThisWeek / target;
+
+    final todayKey = DateTime.now().toIso8601String().substring(0, 10);
+    final doneToday = habit.completedDates.contains(todayKey);
+
+    final streak = habit.currentStreak();
 
     return GestureDetector(
       onTap: () {
@@ -44,6 +50,7 @@ class HabitItemWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            /// Title + Done today
             Row(
               children: [
                 Expanded(
@@ -55,13 +62,16 @@ class HabitItemWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                if (habit.doneToday)
-                  Icon(Icons.check_circle, size: 20, color: Colors.green),
+                if (doneToday)
+                  const Icon(Icons.check_circle, size: 20, color: Colors.green),
               ],
             ),
+
             verticalSpace(6),
+
+            /// Weekly progress text
             Text(
-              "${habit.completedDays} / ${habit.targetPerWeek} ${LocaleKeys.home_thisWeek.tr()}",
+              "$completedThisWeek / $target ${LocaleKeys.home_thisWeek.tr()}",
               style: GoogleFonts.poppins(
                 fontSize: 12.sp,
                 color: Colors.grey[600],
@@ -69,25 +79,31 @@ class HabitItemWidget extends StatelessWidget {
             ),
 
             verticalSpace(8),
+
+            /// Progress bar
             ClipRRect(
               borderRadius: BorderRadius.circular(6.r),
               child: LinearProgressIndicator(
                 value: progress.clamp(0.0, 1.0),
                 minHeight: 5.h,
                 backgroundColor: Colors.grey.withOpacity(0.2),
-                valueColor: AlwaysStoppedAnimation(ColorsManager.primaryColor),
+                valueColor: AlwaysStoppedAnimation(
+                  ColorsManager.primaryColor,
+                ),
               ),
             ),
 
             verticalSpace(12),
+
+            /// Active days + streak
             Row(
               children: [
                 Expanded(child: ActiveDaysRow(activeDays: habit.activeDays)),
-                if (habit.currentStreak > 0)
+                if (streak > 0)
                   Padding(
                     padding: EdgeInsets.only(left: 8.w),
                     child: Text(
-                      "🔥 ${habit.currentStreak}",
+                      "🔥 $streak",
                       style: GoogleFonts.poppins(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w500,
