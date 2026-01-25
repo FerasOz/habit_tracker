@@ -67,6 +67,33 @@ class HabitCubit extends Cubit<HabitState> {
     emit(state.copyWith(habits: updated));
   }
 
+  List<HabitModel> get habitsForSelectedDay {
+    final weekday = state.selectedDay.weekday; // 1-7
+    return state.habits
+        .where((habit) => habit.activeDays.contains(weekday))
+        .toList();
+  }
+
+  void changeSelectedDay(DateTime day) {
+    emit(state.copyWith(selectedDay: day));
+  }
+
+  Future<void> toggleHabitDoneToday(HabitModel habit) async {
+    final todayKey = DateFormat('yyyy-MM-dd').format(state.selectedDay);
+
+    final updatedDates = Set<String>.from(habit.completedDates);
+
+    if (updatedDates.contains(todayKey)) {
+      updatedDates.remove(todayKey);
+    } else {
+      updatedDates.add(todayKey);
+    }
+
+    final updatedHabit = habit.copyWith(completedDates: updatedDates);
+
+    await updateHabit(updatedHabit);
+  }
+
   // change language
   Future<void> changeLanguage(BuildContext context, Locale locale) async {
     await context.setLocale(locale);
@@ -74,14 +101,13 @@ class HabitCubit extends Cubit<HabitState> {
     emit(state.copyWith(locale: locale));
   }
 
-Future<Locale?> loadSavedLanguage() async {
-  final savedLang = await AppStorage.getSavedLanguage();
-  if (savedLang != null) {
-    final locale = Locale(savedLang);
-    emit(state.copyWith(locale: locale));
-    return locale;
+  Future<Locale?> loadSavedLanguage() async {
+    final savedLang = await AppStorage.getSavedLanguage();
+    if (savedLang != null) {
+      final locale = Locale(savedLang);
+      emit(state.copyWith(locale: locale));
+      return locale;
+    }
+    return null;
   }
-  return null;
-}
-
 }

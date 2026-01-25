@@ -7,25 +7,29 @@ class HabitState {
   final List<HabitModel> habits;
   final Locale locale;
   final String? errorMessage;
+  final DateTime selectedDay;
 
   HabitState({
     this.fetchHabitsStatus = RequestsStatus.initial,
     this.habits = const [],
     this.locale = const Locale('en'),
     this.errorMessage,
-  });
+    DateTime? selectedDay,
+  }) : selectedDay = selectedDay ?? DateTime.now();
 
   HabitState copyWith({
     RequestsStatus? fetchHabitsStatus,
     List<HabitModel>? habits,
     Locale? locale,
     String? errorMessage,
+    DateTime? selectedDay,
   }) {
     return HabitState(
       fetchHabitsStatus: fetchHabitsStatus ?? this.fetchHabitsStatus,
       habits: habits ?? this.habits,
       locale: locale ?? this.locale,
-      errorMessage: errorMessage ?? this.errorMessage,
+      errorMessage: errorMessage,
+      selectedDay: selectedDay ?? this.selectedDay,
     );
   }
 }
