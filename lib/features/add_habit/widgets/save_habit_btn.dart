@@ -12,10 +12,11 @@ class SaveHabitBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<HabitCubit>();
+
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: () {
+        onPressed: () async {
           if (cubit.titleController.text.trim().isEmpty) return;
 
           final habit = HabitModel(
@@ -25,16 +26,15 @@ class SaveHabitBtn extends StatelessWidget {
                 ? null
                 : cubit.descriptionController.text.trim(),
             createdAt: DateTime.now(),
-            targetPerWeek: cubit.targetPerWeek.value,
-            completedDays: 0,
-            currentStreak: 0,
-            doneToday: false,
             activeDays: cubit.activeDays.value.toList(),
+            completedDates: {},
           );
 
-          cubit.addHabit(habit);
+          await cubit.addHabit(habit);
+
           cubit.titleController.clear();
           cubit.descriptionController.clear();
+
           Navigator.pop(context);
         },
         child: Text(LocaleKeys.addHabit_save.tr()),
