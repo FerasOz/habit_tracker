@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/data/models/habit_model.dart';
 import 'package:habit_tracker/cubit/habit_cubit.dart';
@@ -19,10 +18,11 @@ class HabitDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<HabitCubit>();
+    final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(habit.title, style: GoogleFonts.poppins(fontWeight: FontWeight.w600)),
+        title: Text(habit.title),
         actions: [
           IconButton(
             icon: const Icon(Icons.delete_outline),
@@ -43,13 +43,13 @@ class HabitDetailsScreen extends StatelessWidget {
               children: [
                 StatCardWidget(
                   title: LocaleKeys.habitDetails_streakTitle.tr(),
-                  value: "${habit.currentStreak()}",
+                  value: habit.currentStreak().toString(),
                   icon: Icons.local_fire_department,
                 ),
                 horizontalSpace(12),
                 StatCardWidget(
                   title: LocaleKeys.habitDetails_completedTitle.tr(),
-                  value: "${habit.completedDates.length}",
+                  value: habit.completedDates.length.toString(),
                   icon: Icons.check_circle,
                 ),
               ],
@@ -64,4 +64,3 @@ class HabitDetailsScreen extends StatelessWidget {
     );
   }
 }
-
