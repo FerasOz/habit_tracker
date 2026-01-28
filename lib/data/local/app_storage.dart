@@ -7,6 +7,7 @@ class AppStorage {
   static late SharedPreferences _prefs;
   static const String _habitsKey = "HABITS_DATA";
   static const String _languageKey = 'APP_LANGUAGE';
+  static const String _themeKey = 'APP_THEME';
 
   static Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
@@ -61,4 +62,13 @@ class AppStorage {
   static Future<String?> getSavedLanguage() async {
     return _prefs.getString(_languageKey);
   }
+
+  // save theme
+  static Future<void> saveTheme(bool isDark) async {
+  await _prefs.setBool(_themeKey, isDark);
+}
+
+static Future<bool?> getSavedTheme() async {
+  return _prefs.getBool(_themeKey);
+}
 }
