@@ -1,8 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/cubit/habit_cubit.dart';
 import 'package:habit_tracker/cubit/habit_state.dart';
@@ -13,31 +11,27 @@ class ChangeLangSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          LocaleKeys.settings_language.tr(),
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.w600,
-            fontSize: 14.sp,
-          ),
-        ),
+        Text(LocaleKeys.settings_language.tr(), style: textTheme.titleSmall),
         verticalSpace(6),
         Container(
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(18),
           ),
           child: Row(
             children: [
               const Icon(Icons.language),
-              const SizedBox(width: 12),
+              horizontalSpace(12),
               Expanded(
                 child: Text(
                   LocaleKeys.settings_language.tr(),
-                  style: GoogleFonts.poppins(fontSize: 16.sp),
+                  style: textTheme.bodyMedium,
                 ),
               ),
               BlocBuilder<HabitCubit, HabitState>(

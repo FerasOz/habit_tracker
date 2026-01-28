@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/features/settings/widgets/about_app_section.dart';
 import 'package:habit_tracker/features/settings/widgets/change_lang_section.dart';
@@ -12,26 +11,19 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(
-          LocaleKeys.settings_title.tr(),
-          style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        foregroundColor: Colors.black,
-      ),
+      appBar: AppBar(title: Text(LocaleKeys.settings_title.tr())),
       body: Padding(
-        padding: const EdgeInsets.all(6.0),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ChangeThemeSection(),
-            verticalSpace(14),
+            verticalSpace(16),
             ChangeLangSection(),
-            verticalSpace(14),
+            verticalSpace(16),
             AboutAppSection(),
           ],
         ),

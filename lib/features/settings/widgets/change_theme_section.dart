@@ -1,32 +1,27 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habit_tracker/core/helpers/spacing.dart';
-import 'package:habit_tracker/core/styles/colors.dart';
+import 'package:habit_tracker/cubit/habit_cubit.dart';
+import 'package:habit_tracker/cubit/habit_state.dart';
 import 'package:habit_tracker/generated/locale_keys.g.dart';
 
 class ChangeThemeSection extends StatelessWidget {
-  bool isDark = false;
-  ChangeThemeSection({super.key});
+  const ChangeThemeSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          LocaleKeys.settings_appearance.tr(),
-          style: GoogleFonts.poppins(
-            fontWeight: FontWeight.w600,
-            fontSize: 14.sp,
-          ),
-        ),
+        Text(LocaleKeys.settings_appearance.tr(), style: textTheme.titleSmall),
         verticalSpace(6),
         Container(
           padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(18),
           ),
           child: Row(
@@ -36,14 +31,17 @@ class ChangeThemeSection extends StatelessWidget {
               Expanded(
                 child: Text(
                   LocaleKeys.settings_darkMode.tr(),
-                  style: GoogleFonts.poppins(fontSize: 15.sp),
+                  style: textTheme.bodyMedium,
                 ),
               ),
-              Switch(
-                value: isDark,
-                activeThumbColor: ColorsManager.primaryColor,
-                onChanged: (v) {
-                  //todo change theme mode
+              BlocBuilder<HabitCubit, HabitState>(
+                builder: (context, state) {
+                  return Switch(
+                    value: state.isDarkMode,
+                    onChanged: (_) {
+                      context.read<HabitCubit>().toggleTheme();
+                    },
+                  );
                 },
               ),
             ],
