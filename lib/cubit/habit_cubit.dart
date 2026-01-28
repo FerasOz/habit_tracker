@@ -68,7 +68,7 @@ class HabitCubit extends Cubit<HabitState> {
   }
 
   List<HabitModel> get habitsForSelectedDay {
-    final weekday = state.selectedDay.weekday; // 1-7
+    final weekday = state.selectedDay.weekday;
     return state.habits
         .where((habit) => habit.activeDays.contains(weekday))
         .toList();
@@ -109,5 +109,19 @@ class HabitCubit extends Cubit<HabitState> {
       return locale;
     }
     return null;
+  }
+
+  // CHANGE theme
+  Future<void> toggleTheme() async {
+    final newTheme = !state.isDarkMode;
+    await AppStorage.saveTheme(newTheme);
+    emit(state.copyWith(isDarkMode: newTheme));
+  }
+
+  Future<void> loadSavedTheme() async {
+    final savedTheme = await AppStorage.getSavedTheme();
+    if (savedTheme != null) {
+      emit(state.copyWith(isDarkMode: savedTheme));
+    }
   }
 }
