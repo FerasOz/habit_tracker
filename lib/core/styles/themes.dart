@@ -1,102 +1,167 @@
 import 'package:flutter/material.dart';
-import 'package:habit_tracker/core/styles/colors.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'colors.dart';
 
-ThemeData lightTheme = ThemeData(
-    primaryColor: ColorsManager.primaryColor,
-    colorScheme: const ColorScheme.light(
-      primary: ColorsManager.primaryColor,
-      secondary: ColorsManager.secondaryColor,
-      error: ColorsManager.errorColor,
-    ),
-    scaffoldBackgroundColor: ColorsManager.backgroundColor,
-    appBarTheme: const AppBarTheme(
-      backgroundColor: Colors.white,
+class AppThemes {
+  static const String fontFamily = 'Poppins';
+
+  // ================= LIGHT THEME =================
+  static ThemeData lightTheme = ThemeData(
+    useMaterial3: true,
+    fontFamily: fontFamily,
+
+    scaffoldBackgroundColor: ColorsManager.lightBackground,
+
+    primaryColor: ColorsManager.primary,
+
+    appBarTheme: AppBarTheme(
+      backgroundColor: ColorsManager.lightBackground,
       elevation: 0,
-      centerTitle: true,
+      systemOverlayStyle: SystemUiOverlayStyle.dark,
       titleTextStyle: TextStyle(
-        fontSize: 20,
+        color: ColorsManager.textPrimary,
+        fontSize: 20.sp,
         fontWeight: FontWeight.w600,
+        fontFamily: fontFamily,
       ),
+      iconTheme: const IconThemeData(color: ColorsManager.textPrimary),
     ),
-    textTheme: const TextTheme(
+
+    cardTheme: CardThemeData(
+      color: ColorsManager.lightCard,
+      elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
+    ),
+
+    textTheme: TextTheme(
       displayLarge: TextStyle(
-        fontSize: 32,
-        fontWeight: FontWeight.w700,
-      ),
-      displayMedium: TextStyle(
-        fontSize: 24,
+        fontSize: 28.sp,
         fontWeight: FontWeight.w600,
+        color: ColorsManager.textPrimary,
       ),
       titleLarge: TextStyle(
-        fontSize: 20,
+        fontSize: 18.sp,
         fontWeight: FontWeight.w600,
-      ),
-      titleMedium: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.w500,
-      ),
-      bodyLarge: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.w400,
+        color: ColorsManager.textPrimary,
       ),
       bodyMedium: TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w400,
+        fontSize: 14.sp,
+        color: ColorsManager.textSecondary,
       ),
+      bodySmall: TextStyle(fontSize: 12.sp, color: ColorsManager.textSecondary),
     ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: ColorsManager.primaryColor,
-        foregroundColor: Colors.white,
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-        textStyle: const TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-    ),
+
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: Colors.white,
+      contentPadding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 12.h),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.circular(12.r),
+        borderSide: BorderSide(color: ColorsManager.borderLight),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.circular(12.r),
+        borderSide: BorderSide(color: ColorsManager.borderLight),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: ColorsManager.primaryColor, width: 2),
+        borderRadius: BorderRadius.circular(12.r),
+        borderSide: BorderSide(color: ColorsManager.primary),
       ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
     ),
-    cardTheme: CardThemeData(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
+
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: ColorsManager.primary,
+        foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(14.r),
+        ),
+        textStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
       ),
-      color: Colors.white,
+    ),
+    colorScheme: ColorScheme.light(
+      primary: ColorsManager.primary,
+      secondary: ColorsManager.primary,
+      surface: Colors.white,
+      background: Colors.white,
+      error: Colors.red,
     ),
   );
 
-   ThemeData darkTheme = ThemeData.dark().copyWith(
-    primaryColor: ColorsManager.primaryColor,
-    scaffoldBackgroundColor: const Color(0xFF121212),
-    appBarTheme: const AppBarTheme(
-      backgroundColor: Color(0xFF1E1E1E),
+  // ================= DARK THEME =================
+  static ThemeData darkTheme = ThemeData(
+    useMaterial3: true,
+    fontFamily: fontFamily,
+    brightness: Brightness.dark,
+
+    scaffoldBackgroundColor: ColorsManager.darkBackground,
+    primaryColor: ColorsManager.primary,
+
+    appBarTheme: AppBarTheme(
+      backgroundColor: ColorsManager.darkBackground,
       elevation: 0,
-    ),
-    cardTheme: CardThemeData(
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
+      systemOverlayStyle: SystemUiOverlayStyle.light,
+      titleTextStyle: TextStyle(
+        color: ColorsManager.textLight,
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w600,
       ),
-      color: const Color(0xFF1E1E1E),
+      iconTheme: const IconThemeData(color: Colors.white),
+    ),
+
+    cardTheme: CardThemeData(
+      color: ColorsManager.darkCard,
+      elevation: 1,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.r)),
+    ),
+
+    textTheme: TextTheme(
+      displayLarge: TextStyle(
+        fontSize: 28.sp,
+        fontWeight: FontWeight.w600,
+        color: ColorsManager.textLight,
+      ),
+      titleLarge: TextStyle(
+        fontSize: 18.sp,
+        fontWeight: FontWeight.w600,
+        color: ColorsManager.textLight,
+      ),
+      bodyMedium: TextStyle(
+        fontSize: 14.sp,
+        color: ColorsManager.textMutedDark,
+      ),
+      bodySmall: TextStyle(fontSize: 12.sp, color: ColorsManager.textMutedDark),
+    ),
+
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: ColorsManager.darkCard,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12.r),
+        borderSide: BorderSide(color: ColorsManager.borderDark),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12.r),
+        borderSide: BorderSide(color: ColorsManager.primary),
+      ),
+    ),
+
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: ColorsManager.primary,
+        foregroundColor: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(14.r),
+        ),
+      ),
+    ),
+    colorScheme: ColorScheme.dark(
+      primary: ColorsManager.primary,
+      secondary: ColorsManager.primary,
+      surface: ColorsManager.darkBackground,
+      background: ColorsManager.darkBackground,
+      error: Colors.red,
     ),
   );
+}
