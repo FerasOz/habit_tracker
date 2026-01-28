@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/data/models/habit_model.dart';
 import 'package:habit_tracker/core/routing/routes.dart';
@@ -16,14 +15,13 @@ class HabitItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final completedThisWeek = habit.completedThisWeek();
     final target = habit.activeDays.length;
-
     final progress = target == 0 ? 0.0 : completedThisWeek / target;
 
     final todayKey = DateTime.now().toIso8601String().substring(0, 10);
     final doneToday = habit.completedDates.contains(todayKey);
-
     final streak = habit.currentStreak();
 
     return GestureDetector(
@@ -34,85 +32,61 @@ class HabitItemWidget extends StatelessWidget {
           arguments: habit,
         );
       },
-      child: Container(
-        padding: EdgeInsets.all(16.r),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16.r),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.04),
-              blurRadius: 8,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            /// Title + Done today
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    habit.title,
-                    style: GoogleFonts.poppins(
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w600,
+      child: Card(
+        child: Padding(
+          padding: EdgeInsets.all(16.r),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      habit.title,
+                      style: theme.textTheme.titleMedium,
                     ),
                   ),
-                ),
-                if (doneToday)
-                  const Icon(Icons.check_circle, size: 20, color: Colors.green),
-              ],
-            ),
-
-            verticalSpace(6),
-
-            /// Weekly progress text
-            Text(
-              "$completedThisWeek / $target ${LocaleKeys.home_thisWeek.tr()}",
-              style: GoogleFonts.poppins(
-                fontSize: 12.sp,
-                color: Colors.grey[600],
+                  if (doneToday)
+                    const Icon(
+                      Icons.check_circle,
+                      color: ColorsManager.success,
+                    ),
+                ],
               ),
-            ),
 
-            verticalSpace(8),
+              verticalSpace(6),
 
-            /// Progress bar
-            ClipRRect(
-              borderRadius: BorderRadius.circular(6.r),
-              child: LinearProgressIndicator(
+              Text(
+                "$completedThisWeek / $target ${LocaleKeys.home_thisWeek.tr()}",
+                style: theme.textTheme.bodySmall,
+              ),
+
+              verticalSpace(8),
+
+              LinearProgressIndicator(
                 value: progress.clamp(0.0, 1.0),
                 minHeight: 5.h,
-                backgroundColor: Colors.grey.withOpacity(0.2),
-                valueColor: AlwaysStoppedAnimation(
-                  ColorsManager.primaryColor,
-                ),
+                backgroundColor: theme.dividerColor.withOpacity(0.3),
+                valueColor: AlwaysStoppedAnimation(ColorsManager.primary),
               ),
-            ),
 
-            verticalSpace(12),
+              verticalSpace(12),
 
-            /// Active days + streak
-            Row(
-              children: [
-                Expanded(child: ActiveDaysRow(activeDays: habit.activeDays)),
-                if (streak > 0)
-                  Padding(
-                    padding: EdgeInsets.only(left: 8.w),
-                    child: Text(
-                      "🔥 $streak",
-                      style: GoogleFonts.poppins(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w500,
+              Row(
+                children: [
+                  Expanded(child: ActiveDaysRow(activeDays: habit.activeDays)),
+                  if (streak > 0)
+                    Padding(
+                      padding: EdgeInsets.only(left: 8.w),
+                      child: Text(
+                        "🔥 $streak",
+                        style: theme.textTheme.bodySmall,
                       ),
                     ),
-                  ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

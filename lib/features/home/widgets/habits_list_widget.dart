@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/data/models/habit_model.dart';
 import 'package:habit_tracker/features/home/widgets/habit_card_widget.dart';
@@ -18,11 +17,13 @@ class HabitsListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-       if (habits.isEmpty) {
+    final textTheme = Theme.of(context).textTheme;
+
+    if (habits.isEmpty) {
       return Center(
         child: Text(
           LocaleKeys.home_emptyHabits.tr(),
-          style: GoogleFonts.poppins(color: Colors.grey),
+          style: textTheme.bodyMedium,
         ),
       );
     }
@@ -31,11 +32,8 @@ class HabitsListWidget extends StatelessWidget {
       itemCount: habits.length,
       separatorBuilder: (_, _) => verticalSpace(12),
       itemBuilder: (context, index) {
-        return HabitCardWidget(
-          habit: habits[index],
-        );
+        return HabitCardWidget(habit: habits[index]);
       },
     );
   }
 }
-

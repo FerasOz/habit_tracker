@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/core/styles/colors.dart';
 
@@ -11,6 +10,7 @@ class ActiveDaysRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final days = ["M", "T", "W", "T", "F", "S", "S"];
 
     return Row(
@@ -20,18 +20,15 @@ class ActiveDaysRow extends StatelessWidget {
 
         return Column(
           children: [
-            Text(
-              days[index],
-              style: GoogleFonts.poppins(fontSize: 10.sp, color: Colors.grey),
-            ),
+            Text(days[index], style: theme.textTheme.bodySmall),
             verticalSpace(4),
             Container(
               width: 18.w,
               height: 4.h,
               decoration: BoxDecoration(
                 color: active
-                    ? ColorsManager.primaryColor
-                    : Colors.grey.withOpacity(0.3),
+                    ? ColorsManager.primary
+                    : theme.dividerColor.withOpacity(0.3),
                 borderRadius: BorderRadius.circular(8),
               ),
             ),

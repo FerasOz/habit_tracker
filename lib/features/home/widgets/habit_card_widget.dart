@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:habit_tracker/core/styles/colors.dart';
 import 'package:habit_tracker/data/models/habit_model.dart';
 import 'package:habit_tracker/cubit/habit_cubit.dart';
 import 'package:habit_tracker/features/home/widgets/habit_item_widget.dart';
@@ -8,15 +9,11 @@ import 'package:habit_tracker/features/home/widgets/habit_item_widget.dart';
 class HabitCardWidget extends StatelessWidget {
   final HabitModel habit;
 
-  const HabitCardWidget({
-    super.key,
-    required this.habit,
-  });
+  const HabitCardWidget({super.key, required this.habit});
 
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<HabitCubit>();
-
     final todayKey = DateTime.now().toIso8601String().substring(0, 10);
     final isDoneToday = habit.completedDates.contains(todayKey);
 
@@ -24,13 +21,13 @@ class HabitCardWidget extends StatelessWidget {
       key: ValueKey(habit.id),
 
       background: _swipeBackground(
-        color: Colors.green,
+        color: ColorsManager.success,
         icon: Icons.check,
         alignment: Alignment.centerLeft,
       ),
 
       secondaryBackground: _swipeBackground(
-        color: Colors.red,
+        color: ColorsManager.danger,
         icon: Icons.delete,
         alignment: Alignment.centerRight,
       ),
@@ -39,16 +36,11 @@ class HabitCardWidget extends StatelessWidget {
         if (direction == DismissDirection.startToEnd) {
           final updatedDates = {...habit.completedDates};
 
-          if (isDoneToday) {
-            updatedDates.remove(todayKey);
-          } else {
-            updatedDates.add(todayKey);
-          }
+          isDoneToday
+              ? updatedDates.remove(todayKey)
+              : updatedDates.add(todayKey);
 
-          cubit.updateHabit(
-            habit.copyWith(completedDates: updatedDates),
-          );
-
+          cubit.updateHabit(habit.copyWith(completedDates: updatedDates));
           return false;
         } else {
           cubit.deleteHabit(habit.id);
