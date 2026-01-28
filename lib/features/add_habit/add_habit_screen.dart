@@ -16,7 +16,10 @@ class AddHabitScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = context.read<HabitCubit>();
     return Scaffold(
-      appBar: AppBar(title: Text(LocaleKeys.addHabit_title.tr()), centerTitle: true),
+      appBar: AppBar(
+        title: Text(LocaleKeys.addHabit_title.tr()),
+        centerTitle: true,
+      ),
 
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -25,7 +28,6 @@ class AddHabitScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
                 borderRadius: BorderRadius.circular(18.r),
               ),
               child: Column(
