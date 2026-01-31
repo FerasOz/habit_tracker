@@ -43,7 +43,7 @@ class HabitDetailsScreen extends StatelessWidget {
               children: [
                 StatCardWidget(
                   title: LocaleKeys.habitDetails_streakTitle.tr(),
-                  value: habit.currentStreak().toString(),
+                  value: habit.currentStreak(context.read<HabitCubit>().state.selectedDay,).toString(),
                   icon: Icons.local_fire_department,
                 ),
                 horizontalSpace(12),
@@ -55,7 +55,7 @@ class HabitDetailsScreen extends StatelessWidget {
               ],
             ),
             verticalSpace(20),
-            WeekDaysWidget(habit: habit),
+            WeekDaysWidget(habit: habit, selectedDay: context.read<HabitCubit>().state.selectedDay),
             const Spacer(),
             MarkAsDoneBtn(habit: habit),
           ],

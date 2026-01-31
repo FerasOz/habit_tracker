@@ -8,12 +8,21 @@ import 'package:habit_tracker/generated/locale_keys.g.dart';
 
 class WeekDaysWidget extends StatelessWidget {
   final HabitModel habit;
-  const WeekDaysWidget({super.key, required this.habit});
+  final DateTime selectedDay;
+
+  const WeekDaysWidget({
+    super.key,
+    required this.habit,
+    required this.selectedDay,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final today = DateTime.now();
     final textTheme = Theme.of(context).textTheme;
+
+    final weekStart = selectedDay.subtract(
+      Duration(days: selectedDay.weekday - 1),
+    );
 
     final weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
@@ -31,13 +40,11 @@ class WeekDaysWidget extends StatelessWidget {
             final dayNumber = index + 1;
             final isActive = habit.activeDays.contains(dayNumber);
 
-            final dateKey = today
-                .subtract(Duration(days: today.weekday - dayNumber))
-                .toIso8601String()
-                .substring(0, 10);
+            final date = weekStart.add(Duration(days: index));
+            final dateKey = DateFormat('yyyy-MM-dd').format(date);
 
             final isCompleted = habit.completedDates.contains(dateKey);
-            final isToday = today.weekday == dayNumber;
+            final isToday = DateUtils.isSameDay(date, selectedDay);
 
             Color bgColor;
             IconData icon;

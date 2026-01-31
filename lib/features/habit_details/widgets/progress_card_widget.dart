@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:habit_tracker/core/helpers/spacing.dart';
+import 'package:habit_tracker/cubit/habit_cubit.dart';
 import 'package:habit_tracker/data/models/habit_model.dart';
 import 'package:habit_tracker/core/styles/colors.dart';
 import 'package:habit_tracker/generated/locale_keys.g.dart';
@@ -12,7 +14,9 @@ class ProgressCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final completedThisWeek = habit.completedThisWeek();
+    final completedThisWeek = habit.completedThisWeek(
+      context.read<HabitCubit>().state.selectedDay,
+    );
     final target = habit.activeDays.length;
     final progress = target == 0 ? 0.0 : completedThisWeek / target;
 
