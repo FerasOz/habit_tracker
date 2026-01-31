@@ -16,7 +16,8 @@ class ActiveDaysRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: List.generate(7, (index) {
-        final active = activeDays.contains(index);
+        final dayNumber = index + 1;
+        final active = activeDays.contains(dayNumber);
 
         return Column(
           children: [
