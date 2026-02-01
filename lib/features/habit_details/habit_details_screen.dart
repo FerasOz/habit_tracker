@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:habit_tracker/core/helpers/dialogs.dart';
 import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/data/models/habit_model.dart';
 import 'package:habit_tracker/cubit/habit_cubit.dart';
@@ -26,9 +27,13 @@ class HabitDetailsScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.delete_outline),
-            onPressed: () {
-              cubit.deleteHabit(habit.id);
-              Navigator.pop(context);
+            onPressed: () async {
+              final confirmed = await showConfirmDeleteDialog(context);
+
+              if (confirmed == true) {
+                cubit.deleteHabit(habit.id);
+                Navigator.pop(context);
+              }
             },
           ),
         ],
@@ -43,7 +48,11 @@ class HabitDetailsScreen extends StatelessWidget {
               children: [
                 StatCardWidget(
                   title: LocaleKeys.habitDetails_streakTitle.tr(),
-                  value: habit.currentStreak(context.read<HabitCubit>().state.selectedDay,).toString(),
+                  value: habit
+                      .currentStreak(
+                        context.read<HabitCubit>().state.selectedDay,
+                      )
+                      .toString(),
                   icon: Icons.local_fire_department,
                 ),
                 horizontalSpace(12),
@@ -55,7 +64,10 @@ class HabitDetailsScreen extends StatelessWidget {
               ],
             ),
             verticalSpace(20),
-            WeekDaysWidget(habit: habit, selectedDay: context.read<HabitCubit>().state.selectedDay),
+            WeekDaysWidget(
+              habit: habit,
+              selectedDay: context.read<HabitCubit>().state.selectedDay,
+            ),
             const Spacer(),
             MarkAsDoneBtn(habit: habit),
           ],
