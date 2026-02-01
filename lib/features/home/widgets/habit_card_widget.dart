@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:habit_tracker/core/helpers/dialogs.dart';
 import 'package:habit_tracker/core/styles/colors.dart';
 import 'package:habit_tracker/data/models/habit_model.dart';
 import 'package:habit_tracker/cubit/habit_cubit.dart';
@@ -43,8 +44,13 @@ class HabitCardWidget extends StatelessWidget {
           cubit.updateHabit(habit.copyWith(completedDates: updatedDates));
           return false;
         } else {
-          cubit.deleteHabit(habit.id);
-          return true;
+          final confirmed = await showConfirmDeleteDialog(context);
+
+          if (confirmed == true) {
+            cubit.deleteHabit(habit.id);
+            return true;
+          }
+          return false;
         }
       },
 
