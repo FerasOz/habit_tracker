@@ -42,5 +42,11 @@
     "arabic": "Arabic",
     "about": "About",
     "aboutText": "This app helps you track and build better habits to improve your daily life."
+  },
+  "dialogs": {
+    "confirmDeleteTitle": "Delete Habit",
+    "confirmDeleteMessage": "Are you sure you want to delete this habit?",
+    "cancel": "Cancel",
+    "delete": "Delete"
   }
 }

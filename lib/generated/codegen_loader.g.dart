@@ -55,6 +55,12 @@ class CodegenLoader extends AssetLoader{
     "arabic": "العربية",
     "about": "حول التطبيق",
     "aboutText": "يساعدك هذا التطبيق على تتبع وبناء عادات أفضل لتحسين حياتك اليومية."
+  },
+  "dialogs": {
+    "confirmDeleteTitle": "حذف العادة",
+    "confirmDeleteMessage": "هل أنت متأكد أنك تريد حذف هذه العادة؟",
+    "cancel": "إلغاء",
+    "delete": "حذف"
   }
 };
 static const Map<String,dynamic> _en = {
@@ -98,6 +104,12 @@ static const Map<String,dynamic> _en = {
     "arabic": "Arabic",
     "about": "About",
     "aboutText": "This app helps you track and build better habits to improve your daily life."
+  },
+  "dialogs": {
+    "confirmDeleteTitle": "Delete Habit",
+    "confirmDeleteMessage": "Are you sure you want to delete this habit?",
+    "cancel": "Cancel",
+    "delete": "Delete"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
