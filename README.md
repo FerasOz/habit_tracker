@@ -1,16 +1,120 @@
-# habit_tracker
+Habit Tracker App
 
-A new Flutter project.
+A clean and scalable Habit Tracker application built with Flutter and Bloc (Cubit), designed to help users build and maintain daily habits with a simple, intuitive experience.
 
-## Getting Started
+📱 Features
 
-This project is a starting point for a Flutter application.
+Create, edit, and delete habits
 
-A few resources to get you started if this is your first Flutter project:
+Assign habits to specific days of the week
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Automatically display habits based on the current day
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Mark habits as completed using swipe gestures
+
+Track:
+
+Daily completion status
+
+Current streak
+
+Total completed days
+
+Local data persistence using Shared Preferences
+
+Clean UI with responsive layout (ScreenUtil)
+
+Confirmation dialogs for destructive actions
+
+🧱 Architecture
+
+The project follows a clean and maintainable architecture inspired by feature-first and separation of concerns principles.
+
+lib/
+│
+├── core/          # App-wide utilities, themes, constants
+├── cubit/         # Global Cubits
+├── data/          # Models & local data sources
+├── features/      # Feature-based modules (UI + logic)
+│   └── home/
+│       ├── view/
+│       ├── widgets/
+│       └── cubit/
+
+Cubit is used for state management
+
+Business logic is fully separated from UI
+
+Widgets are small, reusable, and stateless where possible
+
+🗂 State Management
+
+Uses flutter_bloc (Cubit)
+
+Single source of truth for habit state
+
+Immutable state updates
+
+Clear loading, success, and error handling
+
+💾 Local Storage
+
+Habits and progress are stored locally using SharedPreferences, ensuring:
+
+Fast access
+
+Offline support
+
+Persistence between app launches
+
+🎨 UI & UX
+
+Material 3 design principles
+
+Custom theme (no default purple accents)
+
+Swipe gestures for quick actions
+
+Confirmation dialogs to prevent accidental deletion
+
+Responsive design for different screen sizes
+
+🚀 Getting Started
+Prerequisites
+
+Flutter SDK (latest stable)
+
+Dart SDK
+
+Installation
+git clone https://github.com/your-username/habit-tracker.git
+cd habit-tracker
+flutter pub get
+flutter run
+📦 Dependencies
+
+flutter_bloc
+
+shared_preferences
+
+flutter_screenutil
+
+🔮 Future Improvements
+
+Cloud sync
+
+Statistics & charts
+
+Habit reminders & notifications
+
+Dark / Light theme toggle
+
+Weekly & monthly reports
+
+👨‍💻 Author
+
+Feras Osama Abuzayed
+
+📄 License
+
+This project is licensed under the MIT License.
