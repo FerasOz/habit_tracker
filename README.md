@@ -25,8 +25,9 @@ A clean and scalable **Habit Tracker** application built with **Flutter** and **
 
 | Home (Light) | Home (Dark) |
 |-------------|-------------|
-| ![Home Light](<img width="1920" height="1440" alt="home_light" src="https://github.com/user-attachments/assets/8922369f-25ee-4931-b810-6f224cad2975" />
-) | ![Home Dark](screenshots/home_dark.png) |
+| (<img width="1920" height="1440" alt="home_light" src="https://github.com/user-attachments/assets/8922369f-25ee-4931-b810-6f224cad2975" />
+| <img width="1920" height="1440" alt="home_dark" src="https://github.com/user-attachments/assets/7637094b-3a00-44eb-8bba-40ea75666b25" />
+|
 
 | Add Habit | Habit Details |
 |----------|---------------|
