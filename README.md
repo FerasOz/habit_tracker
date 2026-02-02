@@ -8,6 +8,7 @@ A clean and scalable **Habit Tracker** application built with **Flutter** and **
 
 - Create, edit, and delete habits
 - Assign habits to specific days of the week
+- Light & Dark mode
 - Automatically display habits based on the current day
 - Mark habits as completed using swipe gestures
 - Track:
@@ -17,6 +18,18 @@ A clean and scalable **Habit Tracker** application built with **Flutter** and **
 - Local data persistence using **Shared Preferences**
 - Clean UI with responsive layout (ScreenUtil)
 - Confirmation dialogs for destructive actions
+
+---
+
+## 📸 Screenshots
+
+| Home (Light) | Home (Dark) |
+|-------------|-------------|
+| ![Home Light](screenshots/home_light.png) | ![Home Dark](screenshots/home_dark.png) |
+
+| Add Habit | Habit Details |
+|----------|---------------|
+| ![Add Habit](screenshots/add_habit.png) | ![Habit Details](screenshots/habit_details.png) |
 
 ---
 
@@ -30,11 +43,10 @@ lib/
 ├── core/          # App-wide utilities, themes, constants
 ├── cubit/         # Global Cubits
 ├── data/          # Models & local data sources
-├── features/      # Feature-based modules (UI + logic)
+├── features/      # Feature-based modules (UI (Screens + Widgets))
 │   └── home/
 │       ├── view/
 │       ├── widgets/
-│       └── cubit/
 ```
 
 - **Cubit** is used for state management
@@ -103,7 +115,6 @@ flutter run
 - Cloud sync
 - Statistics & charts
 - Habit reminders & notifications
-- Dark / Light theme toggle
 - Weekly & monthly reports
 
 ---
