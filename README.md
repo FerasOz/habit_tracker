@@ -23,15 +23,16 @@ A clean and scalable **Habit Tracker** application built with **Flutter** and **
 
 ## 📸 Screenshots
 
-| Home (Light) | Home (Dark) |
-|-------------|-------------|
-| <img width="1920" height="1440" alt="home_light" src="https://github.com/user-attachments/assets/8922369f-25ee-4931-b810-6f224cad2975" /> |
-| <img width="1920" height="1440" alt="home_dark" src="https://github.com/user-attachments/assets/7637094b-3a00-44eb-8bba-40ea75666b25" /> |
+### Home Screen
+| Light Mode | Dark Mode |
+|------------|-----------|
+| <img src="https://github.com/user-attachments/assets/8922369f-25ee-4931-b810-6f224cad2975" width="300"/> | <img src="https://github.com/user-attachments/assets/7637094b-3a00-44eb-8bba-40ea75666b25" width="300"/> |
 
+### Habit Management
 | Add Habit | Habit Details |
-|----------|---------------|
-| <img width="1920" height="1440" alt="add_habit" src="https://github.com/user-attachments/assets/c4fb847d-31ed-4dee-9658-bce073f8389c" /> |
-| <img width="1920" height="1440" alt="habit_details" src="https://github.com/user-attachments/assets/d21216a2-eec8-4bb7-b926-a8f3c47257c3" /> |
+|-----------|---------------|
+| <img src="https://github.com/user-attachments/assets/c4fb847d-31ed-4dee-9658-bce073f8389c" width="300"/> | <img src="https://github.com/user-attachments/assets/d21216a2-eec8-4bb7-b926-a8f3c47257c3" width="300"/> |
+
 
 ---
 
