@@ -1,35 +1,30 @@
-Habit Tracker App
+# Habit Tracker App
 
-A clean and scalable Habit Tracker application built with Flutter and Bloc (Cubit), designed to help users build and maintain daily habits with a simple, intuitive experience.
+A clean and scalable **Habit Tracker** application built with **Flutter** and **Bloc (Cubit)**, designed to help users build and maintain daily habits with a simple, intuitive experience.
 
-📱 Features
+---
 
-Create, edit, and delete habits
+## 📱 Features
 
-Assign habits to specific days of the week
+- Create, edit, and delete habits
+- Assign habits to specific days of the week
+- Automatically display habits based on the current day
+- Mark habits as completed using swipe gestures
+- Track:
+  - Daily completion status
+  - Current streak
+  - Total completed days
+- Local data persistence using **Shared Preferences**
+- Clean UI with responsive layout (ScreenUtil)
+- Confirmation dialogs for destructive actions
 
-Automatically display habits based on the current day
+---
 
-Mark habits as completed using swipe gestures
+## 🧱 Architecture
 
-Track:
+The project follows a **clean and maintainable architecture** inspired by feature-first and separation of concerns principles.
 
-Daily completion status
-
-Current streak
-
-Total completed days
-
-Local data persistence using Shared Preferences
-
-Clean UI with responsive layout (ScreenUtil)
-
-Confirmation dialogs for destructive actions
-
-🧱 Architecture
-
-The project follows a clean and maintainable architecture inspired by feature-first and separation of concerns principles.
-
+```
 lib/
 │
 ├── core/          # App-wide utilities, themes, constants
@@ -40,81 +35,86 @@ lib/
 │       ├── view/
 │       ├── widgets/
 │       └── cubit/
+```
 
-Cubit is used for state management
+- **Cubit** is used for state management
+- Business logic is fully separated from UI
+- Widgets are small, reusable, and stateless where possible
 
-Business logic is fully separated from UI
+---
 
-Widgets are small, reusable, and stateless where possible
+## 🗂 State Management
 
-🗂 State Management
+- Uses **flutter_bloc (Cubit)**
+- Single source of truth for habit state
+- Immutable state updates
+- Clear loading, success, and error handling
 
-Uses flutter_bloc (Cubit)
+---
 
-Single source of truth for habit state
+## 💾 Local Storage
 
-Immutable state updates
+Habits and progress are stored locally using **SharedPreferences**, ensuring:
 
-Clear loading, success, and error handling
+- Fast access
+- Offline support
+- Persistence between app launches
 
-💾 Local Storage
+---
 
-Habits and progress are stored locally using SharedPreferences, ensuring:
+## 🎨 UI & UX
 
-Fast access
+- Material 3 design principles
+- Custom theme (no default purple accents)
+- Swipe gestures for quick actions
+- Confirmation dialogs to prevent accidental deletion
+- Responsive design for different screen sizes
 
-Offline support
+---
 
-Persistence between app launches
+## 🚀 Getting Started
 
-🎨 UI & UX
+### Prerequisites
 
-Material 3 design principles
+- Flutter SDK (latest stable)
+- Dart SDK
 
-Custom theme (no default purple accents)
+### Installation
 
-Swipe gestures for quick actions
-
-Confirmation dialogs to prevent accidental deletion
-
-Responsive design for different screen sizes
-
-🚀 Getting Started
-Prerequisites
-
-Flutter SDK (latest stable)
-
-Dart SDK
-
-Installation
+```bash
 git clone https://github.com/your-username/habit-tracker.git
 cd habit-tracker
 flutter pub get
 flutter run
-📦 Dependencies
+```
 
-flutter_bloc
+---
 
-shared_preferences
+## 📦 Dependencies
 
-flutter_screenutil
+- flutter_bloc
+- shared_preferences
+- flutter_screenutil
 
-🔮 Future Improvements
+---
 
-Cloud sync
+## 🔮 Future Improvements
 
-Statistics & charts
+- Cloud sync
+- Statistics & charts
+- Habit reminders & notifications
+- Dark / Light theme toggle
+- Weekly & monthly reports
 
-Habit reminders & notifications
+---
 
-Dark / Light theme toggle
+## 👨‍💻 Author
 
-Weekly & monthly reports
+**Feras Osama Abuzayed**
 
-👨‍💻 Author
+---
 
-Feras Osama Abuzayed
-
-📄 License
+## 📄 License
 
 This project is licensed under the MIT License.
+
