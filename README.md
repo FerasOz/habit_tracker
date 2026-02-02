@@ -30,7 +30,8 @@ A clean and scalable **Habit Tracker** application built with **Flutter** and **
 
 | Add Habit | Habit Details |
 |----------|---------------|
-| ![Add Habit](screenshots/add_habit.png) | ![Habit Details](screenshots/habit_details.png) |
+| <img width="1920" height="1440" alt="add_habit" src="https://github.com/user-attachments/assets/c4fb847d-31ed-4dee-9658-bce073f8389c" /> |
+| <img width="1920" height="1440" alt="habit_details" src="https://github.com/user-attachments/assets/d21216a2-eec8-4bb7-b926-a8f3c47257c3" /> |
 
 ---
 
