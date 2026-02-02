@@ -10,6 +10,8 @@ A clean and scalable **Habit Tracker** application built with **Flutter** and **
 - Assign habits to specific days of the week
 - Light & Dark mode
 - Automatically display habits based on the current day
+- Supports **Arabic & English** languages
+- Seamless language switching using **easy_localization**
 - Mark habits as completed using swipe gestures
 - Track:
   - Daily completion status
@@ -26,12 +28,12 @@ A clean and scalable **Habit Tracker** application built with **Flutter** and **
 ### Home Screen
 | Light Mode | Dark Mode |
 |------------|-----------|
-| <img src="https://github.com/user-attachments/assets/8922369f-25ee-4931-b810-6f224cad2975" width="300"/> | <img src="https://github.com/user-attachments/assets/7637094b-3a00-44eb-8bba-40ea75666b25" width="300"/> |
+| <img src="https://github.com/user-attachments/assets/8922369f-25ee-4931-b810-6f224cad2975" width="600"/> | <img src="https://github.com/user-attachments/assets/7637094b-3a00-44eb-8bba-40ea75666b25" width="600"/> |
 
 ### Habit Management
 | Add Habit | Habit Details |
 |-----------|---------------|
-| <img src="https://github.com/user-attachments/assets/c4fb847d-31ed-4dee-9658-bce073f8389c" width="300"/> | <img src="https://github.com/user-attachments/assets/d21216a2-eec8-4bb7-b926-a8f3c47257c3" width="300"/> |
+| <img src="https://github.com/user-attachments/assets/c4fb847d-31ed-4dee-9658-bce073f8389c" width="600"/> | <img src="https://github.com/user-attachments/assets/d21216a2-eec8-4bb7-b926-a8f3c47257c3" width="600"/> |
 
 
 ---
