@@ -37,7 +37,8 @@ abstract class  LocaleKeys {
   static const settings_english = 'settings.english';
   static const settings_arabic = 'settings.arabic';
   static const settings_about = 'settings.about';
-  static const settings_aboutText = 'settings.aboutText';
+  static const settings_version = 'settings.version';
+  static const settings_builtWith = 'settings.builtWith';
   static const settings = 'settings';
   static const dialogs_confirmDeleteTitle = 'dialogs.confirmDeleteTitle';
   static const dialogs_confirmDeleteMessage = 'dialogs.confirmDeleteMessage';

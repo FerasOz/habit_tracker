@@ -54,7 +54,8 @@ class CodegenLoader extends AssetLoader{
     "english": "الإنجليزية",
     "arabic": "العربية",
     "about": "حول التطبيق",
-    "aboutText": "يساعدك هذا التطبيق على تتبع وبناء عادات أفضل لتحسين حياتك اليومية."
+    "version": "الإصدار",
+    "builtWith": "تم بناؤه باستخدام فلاتر"
   },
   "dialogs": {
     "confirmDeleteTitle": "حذف العادة",
@@ -103,7 +104,8 @@ static const Map<String,dynamic> _en = {
     "english": "English",
     "arabic": "Arabic",
     "about": "About",
-    "aboutText": "This app helps you track and build better habits to improve your daily life."
+    "version": "Version",
+    "builtWith": "Built with Flutter"
   },
   "dialogs": {
     "confirmDeleteTitle": "Delete Habit",
