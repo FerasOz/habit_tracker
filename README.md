@@ -36,9 +36,9 @@ A clean and scalable **Habit Tracker** application built with **Flutter** and **
 | <img src="https://github.com/user-attachments/assets/c4fb847d-31ed-4dee-9658-bce073f8389c" width="600"/> | <img src="https://github.com/user-attachments/assets/d21216a2-eec8-4bb7-b926-a8f3c47257c3" width="600"/> |
 
 ### Settings Screen
-| Settings (Arabic) | English Language |
-|-----------|---------------|
-| <img width="600" alt="settings_arabic" src="https://github.com/user-attachments/assets/f95382e0-6835-48cf-aa08-82f415be23bb" />
+| Settings (Arabic) |
+|-----------|
+| <img width="1200" alt="settings_arabic" src="https://github.com/user-attachments/assets/f95382e0-6835-48cf-aa08-82f415be23bb" />
 
 ---
 
