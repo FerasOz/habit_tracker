@@ -8,7 +8,8 @@ class AboutAppSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -16,19 +17,39 @@ class AboutAppSection extends StatelessWidget {
         Text(LocaleKeys.settings_about.tr(), style: textTheme.titleSmall),
         verticalSpace(6),
         Container(
-          padding: const EdgeInsets.all(14),
           decoration: BoxDecoration(
-            color: Theme.of(context).cardColor,
+            color: theme.cardColor,
             borderRadius: BorderRadius.circular(18),
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Habit Tracker", style: textTheme.titleMedium),
-              verticalSpace(4),
-              Text("Version 1.0.0", style: textTheme.bodySmall),
-              verticalSpace(6),
-              Text("Built with Flutter 💙", style: textTheme.bodyMedium),
+              ListTile(
+                leading: const Icon(Icons.track_changes),
+                title: Text(
+                  LocaleKeys.home_title.tr(),
+                  style: textTheme.titleMedium,
+                ),
+                subtitle: Text(
+                  LocaleKeys.home_subtitle.tr(),
+                  style: textTheme.bodySmall,
+                ),
+              ),
+              const Divider(height: 1),
+              ListTile(
+                leading: const Icon(Icons.info_outline),
+                title: Text(
+                  LocaleKeys.settings_version.tr(),
+                  style: textTheme.bodyMedium,
+                ),
+                trailing: Text("1.0.0", style: textTheme.bodySmall),
+              ),
+              ListTile(
+                leading: const Icon(Icons.code),
+                title: Text(
+                  LocaleKeys.settings_builtWith.tr(),
+                  style: textTheme.bodyMedium,
+                ),
+              ),
             ],
           ),
         ),
