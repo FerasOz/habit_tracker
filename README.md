@@ -31,7 +31,7 @@ A clean and scalable **Habit Tracker** application built with **Flutter** and **
 | <img src="https://github.com/user-attachments/assets/8922369f-25ee-4931-b810-6f224cad2975" width="600"/> | <img src="https://github.com/user-attachments/assets/7637094b-3a00-44eb-8bba-40ea75666b25" width="600"/> |
 
 ### Habit Management
-| Add Habit(Arabic) | Habit Details |
+| Add Habit (Arabic) | Habit Details |
 |-----------|---------------|
 | <img src="https://github.com/user-attachments/assets/c4fb847d-31ed-4dee-9658-bce073f8389c" width="600"/> | <img src="https://github.com/user-attachments/assets/d21216a2-eec8-4bb7-b926-a8f3c47257c3" width="600"/> |
 
