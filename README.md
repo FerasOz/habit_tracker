@@ -4,7 +4,7 @@ A clean and scalable **Habit Tracker** application built with **Flutter** and **
 
 ---
 
-## 📱 Features
+## Features
 
 - Create, edit, and delete habits
 - Assign habits to specific days of the week
@@ -23,7 +23,7 @@ A clean and scalable **Habit Tracker** application built with **Flutter** and **
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
 ### Home Screen
 | Light Mode | Dark Mode |
@@ -42,7 +42,7 @@ A clean and scalable **Habit Tracker** application built with **Flutter** and **
 
 ---
 
-## 🧱 Architecture
+## Architecture
 
 The project follows a **clean and maintainable architecture** inspired by feature-first and separation of concerns principles.
 
@@ -64,7 +64,7 @@ lib/
 
 ---
 
-## 🗂 State Management
+## State Management
 
 - Uses **flutter_bloc (Cubit)**
 - Single source of truth for habit state
@@ -73,7 +73,7 @@ lib/
 
 ---
 
-## 💾 Local Storage
+## Local Storage
 
 Habits and progress are stored locally using **SharedPreferences**, ensuring:
 
@@ -83,7 +83,7 @@ Habits and progress are stored locally using **SharedPreferences**, ensuring:
 
 ---
 
-## 🎨 UI & UX
+## UI & UX
 
 - Material 3 design principles
 - Custom theme (no default purple accents)
@@ -93,7 +93,7 @@ Habits and progress are stored locally using **SharedPreferences**, ensuring:
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -111,7 +111,7 @@ flutter run
 
 ---
 
-## 📦 Dependencies
+## Dependencies
 
 - flutter_bloc
 - shared_preferences
@@ -119,7 +119,7 @@ flutter run
 
 ---
 
-## 🔮 Future Improvements
+## Future Improvements
 
 - Cloud sync
 - Statistics & charts
