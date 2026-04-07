@@ -128,7 +128,7 @@ flutter run
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Feras Osama Abuzayed**
 
