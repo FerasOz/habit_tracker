@@ -25,6 +25,7 @@ class HabitCubit extends Cubit<HabitState> {
         state.copyWith(
           fetchHabitsStatus: RequestsStatus.success,
           habits: habits,
+          clearError: true,
         ),
       );
     } catch (e) {
@@ -67,6 +68,11 @@ class HabitCubit extends Cubit<HabitState> {
     emit(state.copyWith(habits: updated));
   }
 
+  Future<void> clearHabitsOnly() async {
+    await AppStorage.saveHabits([]);
+    emit(state.copyWith(habits: []));
+  }
+
   List<HabitModel> get habitsForSelectedDay {
     final weekday = state.selectedDay.weekday;
     return state.habits
@@ -74,8 +80,21 @@ class HabitCubit extends Cubit<HabitState> {
         .toList();
   }
 
+  HabitModel? habitById(String id) {
+    for (final habit in state.habits) {
+      if (habit.id == id) {
+        return habit;
+      }
+    }
+    return null;
+  }
+
   void changeSelectedDay(DateTime day) {
-    emit(state.copyWith(selectedDay: day));
+    emit(
+      state.copyWith(
+        selectedDay: DateTime(day.year, day.month, day.day),
+      ),
+    );
   }
 
   Future<void> toggleHabitDoneToday(HabitModel habit) async {
@@ -123,5 +142,28 @@ class HabitCubit extends Cubit<HabitState> {
     if (savedTheme != null) {
       emit(state.copyWith(isDarkMode: savedTheme));
     }
+  }
+
+  void resetHabitForm() {
+    titleController.clear();
+    descriptionController.clear();
+    activeDays.value = {1, 2, 3, 4, 5};
+    targetPerWeek.value = 3;
+  }
+
+  void populateHabitForm(HabitModel habit) {
+    titleController.text = habit.title;
+    descriptionController.text = habit.description ?? '';
+    activeDays.value = habit.activeDays.toSet();
+    targetPerWeek.value = habit.targetPerWeek.clamp(1, habit.activeDays.length);
+  }
+
+  @override
+  Future<void> close() {
+    titleController.dispose();
+    descriptionController.dispose();
+    activeDays.dispose();
+    targetPerWeek.dispose();
+    return super.close();
   }
 }

@@ -25,6 +25,7 @@ class HabitState {
     bool? isDarkMode,
     Locale? locale,
     String? errorMessage,
+    bool clearError = false,
     DateTime? selectedDay,
   }) {
     return HabitState(
@@ -32,7 +33,7 @@ class HabitState {
       habits: habits ?? this.habits,
       locale: locale ?? this.locale,
       isDarkMode: isDarkMode ?? this.isDarkMode,
-      errorMessage: errorMessage,
+      errorMessage: clearError ? null : (errorMessage ?? this.errorMessage),
       selectedDay: selectedDay ?? this.selectedDay,
     );
   }
