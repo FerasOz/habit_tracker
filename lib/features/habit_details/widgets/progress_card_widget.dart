@@ -14,18 +14,24 @@ class ProgressCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final completedThisWeek = habit.completedThisWeek(
-      context.read<HabitCubit>().state.selectedDay,
-    );
-    final target = habit.activeDays.length;
+    final selectedDay = context.read<HabitCubit>().state.selectedDay;
+    final completedThisWeek = habit.completedThisWeek(selectedDay);
+    final target = habit.targetPerWeek;
     final progress = target == 0 ? 0.0 : completedThisWeek / target;
+    final progressLabel = "${(progress.clamp(0.0, 1.0) * 100).round()}%";
+    final remaining = habit.remainingThisWeek(selectedDay);
 
     final textTheme = Theme.of(context).textTheme;
 
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: ColorsManager.primary,
+        gradient: LinearGradient(
+          colors: [
+            ColorsManager.primary,
+            ColorsManager.secondary.withOpacity(0.88),
+          ],
+        ),
         borderRadius: BorderRadius.circular(20.r),
       ),
       child: Column(
@@ -39,6 +45,21 @@ class ProgressCardWidget extends StatelessWidget {
           Text(
             "$completedThisWeek / $target",
             style: textTheme.displayLarge?.copyWith(color: Colors.white),
+          ),
+          verticalSpace(6),
+          Text(
+            progressLabel,
+            style: textTheme.bodySmall?.copyWith(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          verticalSpace(4),
+          Text(
+            LocaleKeys.habitDetails_remainingThisWeek.tr(
+              namedArgs: {'count': '$remaining'},
+            ),
+            style: textTheme.bodySmall?.copyWith(color: Colors.white70),
           ),
           verticalSpace(12),
           LinearProgressIndicator(

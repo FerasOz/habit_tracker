@@ -19,21 +19,29 @@ class StatCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          borderRadius: BorderRadius.circular(16.r),
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Theme.of(context).cardColor,
+        borderRadius: BorderRadius.circular(16.r),
+        border: Border.all(
+          color: Theme.of(context).dividerColor.withOpacity(0.2),
         ),
-        child: Column(
-          children: [
-            Icon(icon, color: ColorsManager.primary),
-            verticalSpace(8),
-            Text(value, style: textTheme.titleLarge),
-            Text(title, style: textTheme.bodySmall),
-          ],
-        ),
+      ),
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: ColorsManager.primary.withOpacity(0.1),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(icon, color: ColorsManager.primary),
+          ),
+          verticalSpace(8),
+          Text(value, style: textTheme.titleLarge),
+          Text(title, style: textTheme.bodySmall, textAlign: TextAlign.center),
+        ],
       ),
     );
   }
