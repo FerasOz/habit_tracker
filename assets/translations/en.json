@@ -3,15 +3,25 @@
     "title": "Habit Tracker",
     "subtitle": "Build better habits",
     "emptyHabits": "No habits yet. Start by adding a new habit!",
+    "thisWeek": "This week",
+    "statusDone": "Done",
+    "statusRemaining": "Remaining",
+    "restDay": "Rest day",
+    "inactiveDayError": "You can only complete this habit on an active day",
+    "insightEmpty": "Add your first habit to unlock daily insights here.",
+    "insightAllDone": "Strong day. You completed every habit for this view.",
+    "insightProgress": "{weeklyRemaining} check-ins left for this week, and your best current streak is {strongestStreak}.",
     "summary": {
       "title": "Today's Progress",
-      "completed": "habits completed"
-    },
-    "thisWeek": "This week"
+      "completed": "habits completed",
+      "excellent": "Excellent momentum",
+      "good": "You are building consistency",
+      "start": "Start with one small win today"
+    }
   },
-
   "addHabit": {
     "title": "Add New Habit",
+    "editTitle": "Edit Habit",
     "nameLabel": "Habit Name",
     "nameHint": "e.g. Drink Water",
     "descriptionLabel": "Description",
@@ -19,19 +29,33 @@
     "target": "Target per week",
     "times": "times",
     "activeDays": "Active days",
-    "save": "Save Habit"
+    "save": "Save Habit",
+    "saveChanges": "Save Changes",
+    "quickPreview": "Quick preview",
+    "createHeaderSubtitle": "Start simple today and repeat it every week",
+    "editHeaderTitle": "Refine your plan",
+    "editHeaderSubtitle": "Adjust the target, active days, and notes to keep this habit realistic.",
+    "validationNameRequired": "Please enter a habit name",
+    "validationNameShort": "Habit name is too short",
+    "validationActiveDayRequired": "Choose at least one active day"
   },
-
   "habitDetails": {
     "weeklyProgress": "Weekly Progress",
+    "remainingThisWeek": "{count} remaining this week",
     "streakTitle": "Streak",
+    "bestStreakTitle": "Best streak",
+    "consistencyTitle": "Consistency",
     "days": "days",
     "completedTitle": "Completed",
     "thisWeek": "This Week",
     "markDone": "Mark as Done",
-    "markUndone": "Not Done Today"
+    "markUndone": "Not Done Today",
+    "inactiveDay": "This is not an active day",
+    "insightDone": "Nice work. This habit is already completed for the selected day.",
+    "insightGoalReached": "Weekly goal reached. Keep the rhythm going.",
+    "insightActivePending": "Today counts for this habit, and finishing it moves you closer to the weekly goal.",
+    "insightRestDay": "This day is off for this habit, so you can treat it as recovery time."
   },
-
   "settings": {
     "title": "Settings",
     "appearance": "Appearance",
@@ -41,8 +65,8 @@
     "english": "English",
     "arabic": "Arabic",
     "about": "About",
-    "version":"Version",
-    "builtWith":"Built with Flutter"
+    "version": "Version",
+    "builtWith": "Built with Flutter"
   },
   "dialogs": {
     "confirmDeleteTitle": "Delete Habit",

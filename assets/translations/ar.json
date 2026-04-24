@@ -3,15 +3,25 @@
     "title": "متتبع العادات",
     "subtitle": "ابنِ عادات أفضل",
     "emptyHabits": "لا توجد عادات بعد، ابدأ بإضافة عادة جديدة",
+    "thisWeek": "هذا الأسبوع",
+    "statusDone": "منجز",
+    "statusRemaining": "متبقي",
+    "restDay": "راحة",
+    "inactiveDayError": "لا يمكن إكمال هذه العادة في يوم غير نشط",
+    "insightEmpty": "ابدأ بإضافة عادة واحدة لتظهر لك الرؤية اليومية هنا.",
+    "insightAllDone": "يوم ممتاز، أنجزت كل عادات اليوم.",
+    "insightProgress": "متبقي {weeklyRemaining} إنجاز للوصول لأهداف هذا الأسبوع، وأطول سلسلة حالية {strongestStreak}.",
     "summary": {
       "title": "تقدم اليوم",
-      "completed": "عادات مكتملة"
-    },
-    "thisWeek": "هذا الأسبوع"
+      "completed": "عادات مكتملة",
+      "excellent": "أداء ممتاز اليوم",
+      "good": "أنت على الطريق الصحيح",
+      "start": "ابدأ بخطوة صغيرة اليوم"
+    }
   },
-
   "addHabit": {
     "title": "إضافة عادة جديدة",
+    "editTitle": "تعديل العادة",
     "nameLabel": "اسم العادة",
     "nameHint": "مثال: شرب الماء",
     "descriptionLabel": "الوصف",
@@ -19,19 +29,33 @@
     "target": "الهدف الأسبوعي",
     "times": "مرات",
     "activeDays": "الأيام النشطة",
-    "save": "حفظ العادة"
+    "save": "حفظ العادة",
+    "saveChanges": "حفظ التعديلات",
+    "quickPreview": "معاينة سريعة",
+    "createHeaderSubtitle": "ابدأ بخطوة بسيطة اليوم وكررها كل أسبوع",
+    "editHeaderTitle": "حدّث خطتك",
+    "editHeaderSubtitle": "عدّل الأيام المستهدفة والوصف لتبقى العادة مناسبة لروتينك",
+    "validationNameRequired": "يرجى إدخال اسم العادة",
+    "validationNameShort": "اسم العادة قصير جداً",
+    "validationActiveDayRequired": "اختر يوماً واحداً على الأقل"
   },
-
   "habitDetails": {
     "weeklyProgress": "التقدم الأسبوعي",
+    "remainingThisWeek": "متبقي هذا الأسبوع: {count}",
     "streakTitle": "الاستمرارية",
+    "bestStreakTitle": "أفضل سلسلة",
+    "consistencyTitle": "نسبة الالتزام",
     "days": "أيام",
     "completedTitle": "تم الإنجاز",
     "thisWeek": "هذا الأسبوع",
-    "markDone": "تم إنجازه اليوم",
-    "markUndone": "لم يتم اليوم"
+    "markDone": "تم إنجازها اليوم",
+    "markUndone": "لم يتم اليوم",
+    "inactiveDay": "هذا اليوم غير نشط لهذه العادة",
+    "insightDone": "أحسنت، هذه العادة منجزة في اليوم المحدد.",
+    "insightGoalReached": "لقد أغلقت هدف الأسبوع. حافظ على الإيقاع.",
+    "insightActivePending": "اليوم مناسب لهذه العادة، وإنجازها الآن يقربك من الهدف الأسبوعي.",
+    "insightRestDay": "هذا اليوم غير نشط لهذه العادة، ويمكنك اعتباره مساحة راحة."
   },
-
   "settings": {
     "title": "الإعدادات",
     "appearance": "المظهر",
@@ -41,8 +65,8 @@
     "english": "الإنجليزية",
     "arabic": "العربية",
     "about": "حول التطبيق",
-    "version":"الإصدار",
-    "builtWith":"تم بناؤه باستخدام فلاتر"
+    "version": "الإصدار",
+    "builtWith": "تم بناؤه باستخدام فلتر"
   },
   "dialogs": {
     "confirmDeleteTitle": "حذف العادة",
