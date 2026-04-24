@@ -21,6 +21,7 @@ class SummaryCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final percentage = (progress * 100).toInt();
     final theme = Theme.of(context);
+    final statusMessage = _statusMessage(context, percentage);
 
     return Container(
       padding: EdgeInsets.all(20.r),
@@ -28,10 +29,20 @@ class SummaryCardWidget extends StatelessWidget {
         gradient: LinearGradient(
           colors: [
             ColorsManager.primary,
-            ColorsManager.primary.withOpacity(0.85),
+            const Color(0xFF12A564),
+            ColorsManager.secondary.withOpacity(0.9),
           ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(20.r),
+        boxShadow: [
+          BoxShadow(
+            color: ColorsManager.primary.withOpacity(0.28),
+            blurRadius: 14,
+            offset: const Offset(0, 8),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,6 +69,14 @@ class SummaryCardWidget extends StatelessWidget {
             "$percentage%",
             style: theme.textTheme.bodySmall?.copyWith(color: Colors.white70),
           ),
+          verticalSpace(4),
+          Text(
+            statusMessage,
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
           verticalSpace(14),
           ClipRRect(
             borderRadius: BorderRadius.circular(10.r),
@@ -71,5 +90,11 @@ class SummaryCardWidget extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String _statusMessage(BuildContext context, int percentage) {
+    if (percentage >= 80) return LocaleKeys.home_summary_excellent.tr();
+    if (percentage >= 40) return LocaleKeys.home_summary_good.tr();
+    return LocaleKeys.home_summary_start.tr();
   }
 }

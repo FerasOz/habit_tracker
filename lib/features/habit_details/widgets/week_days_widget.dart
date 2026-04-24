@@ -24,8 +24,6 @@ class WeekDaysWidget extends StatelessWidget {
       Duration(days: selectedDay.weekday - 1),
     );
 
-    final weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -34,8 +32,9 @@ class WeekDaysWidget extends StatelessWidget {
           style: textTheme.titleMedium,
         ),
         verticalSpace(12),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Wrap(
+          spacing: 8.w,
+          runSpacing: 8.h,
           children: List.generate(7, (index) {
             final dayNumber = index + 1;
             final isActive = habit.activeDays.contains(dayNumber);
@@ -60,21 +59,34 @@ class WeekDaysWidget extends StatelessWidget {
               icon = Icons.remove;
             }
 
-            return Column(
-              children: [
-                CircleAvatar(
-                  radius: 18.r,
-                  backgroundColor: bgColor,
-                  child: Icon(icon, size: 16, color: Colors.white),
+            return Container(
+              width: 44.w,
+              padding: EdgeInsets.symmetric(vertical: 8.h),
+              decoration: BoxDecoration(
+                color: Theme.of(context).cardColor,
+                borderRadius: BorderRadius.circular(12.r),
+                border: Border.all(
+                  color: isToday
+                      ? Theme.of(context).colorScheme.primary
+                      : Theme.of(context).dividerColor.withOpacity(0.18),
                 ),
-                verticalSpace(6),
-                Text(
-                  weekDays[index],
-                  style: textTheme.bodySmall?.copyWith(
-                    fontWeight: isToday ? FontWeight.bold : FontWeight.normal,
+              ),
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    radius: 14.r,
+                    backgroundColor: bgColor,
+                    child: Icon(icon, size: 14, color: Colors.white),
                   ),
-                ),
-              ],
+                  verticalSpace(4),
+                  Text(
+                    DateFormat('E', context.locale.languageCode).format(date),
+                    style: textTheme.bodySmall?.copyWith(
+                      fontWeight: isToday ? FontWeight.bold : FontWeight.normal,
+                    ),
+                  ),
+                ],
+              ),
             );
           }),
         ),

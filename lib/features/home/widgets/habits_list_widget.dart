@@ -18,6 +18,7 @@ class HabitsListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final selectedKey = DateFormat('yyyy-MM-dd').format(selectedDay);
 
     if (habits.isEmpty) {
       return Center(
@@ -28,11 +29,21 @@ class HabitsListWidget extends StatelessWidget {
       );
     }
 
+    final sortedHabits = [...habits]
+      ..sort((a, b) {
+        final aDone = a.completedDates.contains(selectedKey);
+        final bDone = b.completedDates.contains(selectedKey);
+        if (aDone != bDone) {
+          return aDone ? 1 : -1;
+        }
+        return a.title.toLowerCase().compareTo(b.title.toLowerCase());
+      });
+
     return ListView.separated(
-      itemCount: habits.length,
+      itemCount: sortedHabits.length,
       separatorBuilder: (_, _) => verticalSpace(12),
       itemBuilder: (context, index) {
-        return HabitCardWidget(habit: habits[index]);
+        return HabitCardWidget(habit: sortedHabits[index]);
       },
     );
   }
