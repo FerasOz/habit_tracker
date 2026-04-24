@@ -1,13 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:habit_tracker/core/helpers/spacing.dart';
 import 'package:habit_tracker/generated/locale_keys.g.dart';
 
 class ActiveDaysWidget extends StatelessWidget {
-  ValueNotifier<Set<int>> activeDays;
-  ActiveDaysWidget({super.key, required this.activeDays});
+  final ValueNotifier<Set<int>> activeDays;
+  final ValueChanged<Set<int>>? onChanged;
+  const ActiveDaysWidget({super.key, required this.activeDays, this.onChanged});
 
-  final List<int> weekDays = [1, 2, 3, 4, 5, 6, 7];
+  static const List<int> weekDays = [1, 2, 3, 4, 5, 6, 7];
 
   @override
   Widget build(BuildContext context) {
@@ -22,46 +24,45 @@ class ActiveDaysWidget extends StatelessWidget {
         ValueListenableBuilder(
           valueListenable: activeDays,
           builder: (context, value, _) {
-            return Wrap(
-              spacing: 10,
-              children: weekDays.map((d) {
-                final bool selected = value.contains(d);
+            return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: weekDays.map((d) {
+                  final bool selected = value.contains(d);
+                  final date = DateTime(2024, 1, d);
 
-                return ChoiceChip(
-                  label: Text(_dayName(d)),
-                  selected: selected,
-                  onSelected: (_) {
-                    final set = {...value};
-                    selected ? set.remove(d) : set.add(d);
-                    activeDays.value = set;
-                  },
-                );
-              }).toList(),
+                  return Padding(
+                    padding: EdgeInsetsDirectional.only(end: 8.w),
+                    child: FilterChip(
+                      showCheckmark: false,
+                      labelPadding: EdgeInsets.symmetric(horizontal: 8.w),
+                      selectedColor: Theme.of(context).colorScheme.primary,
+                      backgroundColor: Theme.of(context).cardColor,
+                      label: Text(
+                        DateFormat(
+                          'E',
+                          context.locale.languageCode,
+                        ).format(date),
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: selected ? Colors.white : null,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      selected: selected,
+                      onSelected: (_) {
+                        final set = {...value};
+                        selected ? set.remove(d) : set.add(d);
+                        activeDays.value = set;
+                        onChanged?.call(set);
+                      },
+                    ),
+                  );
+                }).toList(),
+              ),
             );
           },
         ),
       ],
     );
-  }
-
-  String _dayName(int d) {
-    switch (d) {
-      case 1:
-        return "Mon";
-      case 2:
-        return "Tue";
-      case 3:
-        return "Wed";
-      case 4:
-        return "Thu";
-      case 5:
-        return "Fri";
-      case 6:
-        return "Sat";
-      case 7:
-        return "Sun";
-      default:
-        return "";
-    }
   }
 }
