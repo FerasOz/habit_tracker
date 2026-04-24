@@ -84,7 +84,6 @@ class AppThemes {
       primary: ColorsManager.primary,
       secondary: ColorsManager.primary,
       surface: Colors.white,
-      background: Colors.white,
       error: Colors.red,
     ),
   );
@@ -160,7 +159,6 @@ class AppThemes {
       primary: ColorsManager.primary,
       secondary: ColorsManager.primary,
       surface: ColorsManager.darkBackground,
-      background: ColorsManager.darkBackground,
       error: Colors.red,
     ),
   );
