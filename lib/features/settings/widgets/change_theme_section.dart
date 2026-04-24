@@ -23,20 +23,51 @@ class ChangeThemeSection extends StatelessWidget {
           decoration: BoxDecoration(
             color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(18),
+            border: Border.all(
+              color: Theme.of(context).dividerColor.withOpacity(0.2),
+            ),
           ),
           child: Row(
             children: [
-              const Icon(Icons.dark_mode_outlined),
-              horizontalSpace(12),
-              Expanded(
-                child: Text(
-                  LocaleKeys.settings_darkMode.tr(),
-                  style: textTheme.bodyMedium,
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.12),
+                  shape: BoxShape.circle,
                 ),
+                child: const Icon(Icons.dark_mode_outlined),
+              ),
+              horizontalSpace(12),
+              BlocBuilder<HabitCubit, HabitState>(
+                builder: (context, state) {
+                  return Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          LocaleKeys.settings_darkMode.tr(),
+                          style: textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Text(
+                          state.isDarkMode
+                              ? (context.locale.languageCode == 'ar'
+                                    ? 'مفعل'
+                                    : 'Enabled')
+                              : (context.locale.languageCode == 'ar'
+                                    ? 'غير مفعل'
+                                    : 'Disabled'),
+                          style: textTheme.bodySmall,
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
               BlocBuilder<HabitCubit, HabitState>(
                 builder: (context, state) {
-                  return Switch(
+                  return Switch.adaptive(
                     value: state.isDarkMode,
                     onChanged: (_) {
                       context.read<HabitCubit>().toggleTheme();

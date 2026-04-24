@@ -23,39 +23,63 @@ class ChangeLangSection extends StatelessWidget {
           decoration: BoxDecoration(
             color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(18),
+            border: Border.all(
+              color: Theme.of(context).dividerColor.withOpacity(0.2),
+            ),
           ),
-          child: Row(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Icon(Icons.language),
-              horizontalSpace(12),
-              Expanded(
-                child: Text(
-                  LocaleKeys.settings_language.tr(),
-                  style: textTheme.bodyMedium,
-                ),
+              Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.primary.withOpacity(0.12),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(Icons.language),
+                  ),
+                  horizontalSpace(12),
+                  Expanded(
+                    child: Text(
+                      LocaleKeys.settings_appLanguage.tr(),
+                      style: textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ],
               ),
+              verticalSpace(12),
               BlocBuilder<HabitCubit, HabitState>(
                 builder: (context, state) {
-                  return DropdownButton<Locale>(
-                    value: state.locale,
-                    underline: const SizedBox(),
-                    items: [
-                      DropdownMenuItem(
-                        value: const Locale('en'),
-                        child: Text(LocaleKeys.settings_english.tr()),
+                  return Wrap(
+                    spacing: 8,
+                    children: [
+                      ChoiceChip(
+                        label: Text(LocaleKeys.settings_english.tr()),
+                        selected: state.locale.languageCode == 'en',
+                        onSelected: (_) {
+                          context.read<HabitCubit>().changeLanguage(
+                            context,
+                            const Locale('en'),
+                          );
+                        },
                       ),
-                      DropdownMenuItem(
-                        value: const Locale('ar'),
-                        child: Text(LocaleKeys.settings_arabic.tr()),
+                      ChoiceChip(
+                        label: Text(LocaleKeys.settings_arabic.tr()),
+                        selected: state.locale.languageCode == 'ar',
+                        onSelected: (_) {
+                          context.read<HabitCubit>().changeLanguage(
+                            context,
+                            const Locale('ar'),
+                          );
+                        },
                       ),
                     ],
-                    onChanged: (locale) {
-                      if (locale == null) return;
-                      context.read<HabitCubit>().changeLanguage(
-                        context,
-                        locale,
-                      );
-                    },
                   );
                 },
               ),
