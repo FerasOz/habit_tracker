@@ -22,9 +22,12 @@ class AppRouters {
               BlocProvider.value(value: habitCubit, child: HomeScreen()),
         );
       case Routes.addHabitScreen:
+        final habit = settings.arguments as HabitModel?;
         return MaterialPageRoute(
-          builder: (_) =>
-              BlocProvider.value(value: habitCubit, child: AddHabitScreen()),
+          builder: (_) => BlocProvider.value(
+            value: habitCubit,
+            child: AddHabitScreen(habitToEdit: habit),
+          ),
         );
       case Routes.habitDetailsScreen:
         final habit = settings.arguments as HabitModel;
