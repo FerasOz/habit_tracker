@@ -1,135 +1,160 @@
-# Habit Tracker App
+# Habit Tracker
 
-A clean and scalable **Habit Tracker** application built with **Flutter** and **Bloc (Cubit)**, designed to help users build and maintain daily habits with a simple, intuitive experience.
+A Flutter habit tracking app focused on helping users build consistent routines with a clean UI, weekly goals, and simple local persistence.
 
----
+## Overview
 
-## Features
+The app lets users create habits, choose active days, define a weekly target, track completion by day, and monitor progress through streaks and consistency insights. It also supports Arabic and English, light and dark themes, and keeps data saved locally between launches.
 
-- Create, edit, and delete habits
-- Assign habits to specific days of the week
-- Light & Dark mode
-- Automatically display habits based on the current day
-- Supports **Arabic & English** languages
-- Seamless language switching using **easy_localization**
-- Mark habits as completed using swipe gestures
-- Track:
-  - Daily completion status
-  - Current streak
-  - Total completed days
-- Local data persistence using **Shared Preferences**
-- Clean UI with responsive layout (ScreenUtil)
-- Confirmation dialogs for destructive actions
+## Current Features
 
----
+- Add new habits with title, optional description, active days, and weekly target.
+- Edit existing habits without losing their saved progress history.
+- Delete a single habit from the home list or habit details screen.
+- Clear all habits from the settings screen.
+- Browse habits for any selected day using the weekly day selector.
+- Mark habits as done or undone for the selected day.
+- Prevent marking a habit as completed on inactive days.
+- Show daily summary cards for done and remaining habits.
+- Track weekly progress for each habit against a configurable target.
+- Show detailed stats such as current streak, best streak, total completions, and 28-day consistency rate.
+- Support Arabic and English with `easy_localization`.
+- Support light and dark themes with saved user preference.
+- Persist habits, language, and theme locally using `SharedPreferences`.
+- Use responsive sizing with `flutter_screenutil`.
 
-## Screenshots
+## Screens Included
 
-### Home Screen
-| Light Mode | Dark Mode |
-|------------|-----------|
-| <img src="https://github.com/user-attachments/assets/8922369f-25ee-4931-b810-6f224cad2975" width="600"/> | <img src="https://github.com/user-attachments/assets/7637094b-3a00-44eb-8bba-40ea75666b25" width="600"/> |
+- Home screen
+- Add habit screen
+- Edit habit flow
+- Habit details screen
+- Settings screen
 
-### Habit Management
-| Add Habit (Arabic) | Habit Details |
-|-----------|---------------|
-| <img src="https://github.com/user-attachments/assets/c4fb847d-31ed-4dee-9658-bce073f8389c" width="600"/> | <img src="https://github.com/user-attachments/assets/d21216a2-eec8-4bb7-b926-a8f3c47257c3" width="600"/> |
+## Tech Stack
 
-### Settings Screen
-| Settings (Arabic) |
-|-----------|
-| <img width="1200" alt="settings_arabic" src="https://github.com/user-attachments/assets/f95382e0-6835-48cf-aa08-82f415be23bb" />
+- Flutter
+- Dart
+- `flutter_bloc` / Cubit
+- `shared_preferences`
+- `easy_localization`
+- `flutter_screenutil`
+- `uuid`
 
----
+## Project Structure
 
-## Architecture
-
-The project follows a **clean and maintainable architecture** inspired by feature-first and separation of concerns principles.
-
-```
+```text
 lib/
-│
-├── core/          # App-wide utilities, themes, constants
-├── cubit/         # Global Cubits
-├── data/          # Models & local data sources
-├── features/      # Feature-based modules (UI (Screens + Widgets))
-│   └── home/
-│       ├── view/
-│       ├── widgets/
+├── core/
+│   ├── helpers/        # Shared helpers, constants, dialogs, spacing
+│   ├── routing/        # Named routes and route generation
+│   └── styles/         # Colors and theme definitions
+├── cubit/              # App state and business logic
+├── data/
+│   ├── local/          # SharedPreferences wrapper
+│   └── models/         # Habit model and progress calculations
+├── features/
+│   ├── add_habit/      # Create / edit habit UI
+│   ├── habit_details/  # Habit analytics and status view
+│   ├── home/           # Weekly overview and habits list
+│   └── settings/       # Theme, language, and app info
+├── generated/          # Localization generated files
+├── habit_tracker_app.dart
+└── main.dart
 ```
-
-- **Cubit** is used for state management
-- Business logic is fully separated from UI
-- Widgets are small, reusable, and stateless where possible
-
----
 
 ## State Management
 
-- Uses **flutter_bloc (Cubit)**
-- Single source of truth for habit state
-- Immutable state updates
-- Clear loading, success, and error handling
+The app uses a single `HabitCubit` as the main source of truth for:
 
----
+- Loading and saving habits
+- Switching language
+- Toggling theme
+- Tracking the currently selected day
+- Managing the create/edit habit form state
 
-## Local Storage
+## Data Model
 
-Habits and progress are stored locally using **SharedPreferences**, ensuring:
+Each habit stores:
 
-- Fast access
-- Offline support
-- Persistence between app launches
+- `id`
+- `title`
+- `description`
+- `createdAt`
+- `activeDays`
+- `targetPerWeek`
+- `completedDates`
 
----
+From this data, the app derives:
 
-## UI & UX
+- completion state for a specific day
+- completed count for the selected week
+- remaining weekly target
+- current streak
+- best streak
+- 28-day consistency rate
 
-- Material 3 design principles
-- Custom theme (no default purple accents)
-- Swipe gestures for quick actions
-- Confirmation dialogs to prevent accidental deletion
-- Responsive design for different screen sizes
+## Local Persistence
 
----
+The app currently uses `SharedPreferences` to save:
 
-## Getting Started
+- habits data
+- selected language
+- selected theme
+
+This makes the app work fully offline with no backend dependency.
+
+## Localization
+
+Translations live in:
+
+- `assets/translations/en.json`
+- `assets/translations/ar.json`
+
+Localization is initialized in `main.dart` using `easy_localization`, and generated keys are stored in `lib/generated/`.
+
+## Routing
+
+Named routing is centralized in `lib/core/routing/app_routers.dart`.
+
+Current routes:
+
+- home screen
+- add habit screen
+- habit details screen
+- settings screen
+
+## Running the Project
 
 ### Prerequisites
 
-- Flutter SDK (latest stable)
+- Flutter SDK
 - Dart SDK
+- A configured Flutter environment for Android, iOS, Web, Windows, Linux, or macOS
 
-### Installation
+### Install and Run
 
 ```bash
-git clone https://github.com/your-username/habit-tracker.git
-cd habit-tracker
 flutter pub get
 flutter run
 ```
 
----
+## Notes for Developers
 
-## Dependencies
+- The add habit screen is also used for editing habits.
+- Weekly target is automatically clamped so it does not exceed selected active days.
+- Completion is stored as normalized `yyyy-MM-dd` date keys.
+- The selected day affects both the home summary and habit details analytics.
 
-- flutter_bloc
-- shared_preferences
-- flutter_screenutil
+## Possible Next Improvements
 
----
-
-## Future Improvements
-
+- Notifications and reminders
+- Export or backup support
 - Cloud sync
-- Statistics & charts
-- Habit reminders & notifications
-- Weekly & monthly reports
-
----
+- Charts and advanced reports
+- Search, filtering, and sorting options
+- Better automated test coverage
 
 ## Author
 
 **Feras Osama Abuzayed**
-
-
