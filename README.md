@@ -2,6 +2,9 @@
 
 A Flutter habit tracking app focused on helping users build consistent routines with a clean UI, weekly goals, and simple local persistence.
 
+<img width="940" height="788" alt="Habit tracker mockup" src="https://github.com/user-attachments/assets/9ad3cd92-e3fe-43fc-8299-70771e303a1c" />
+
+
 ## Overview
 
 The app lets users create habits, choose active days, define a weekly target, track completion by day, and monitor progress through streaks and consistency insights. It also supports Arabic and English, light and dark themes, and keeps data saved locally between launches.
